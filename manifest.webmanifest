@@ -1,0 +1,16 @@
+{
+  "name": "EntityDex – Dead by Daylight",
+  "short_name": "EntityDex",
+  "description": "Schrein, Events, Codes, Kill Switch, Patches, Perks, Charaktere, Builds, Geschichte und Spieler-Stats für Dead by Daylight. Von FGSeRaser.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0b0d10",
+  "theme_color": "#0b0d10",
+  "lang": "de",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

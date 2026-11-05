@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EntityDex – Dead by Daylight Nachschlagewerk</title>
+<meta name="description" content="EntityDex: Schrein, Events, Codes, Kill Switch, Patches, Perks, Charaktere, Builds und Spieler-Stats für Dead by Daylight. Von FGSeRaser.">
+<meta name="theme-color" content="#0b0d10">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<header class="kopf">
+  <img src="icons/icon-192.png" alt="" class="logo">
+  <div class="titel"><b>Entity<span>Dex</span></b><small>Dead by Daylight – alles auf einen Blick</small></div>
+  <div class="kopf-rechts">
+    <select id="sprache" title="Sprache für Wiki-Inhalte">
+      <option value="en">Wiki: EN</option>
+      <option value="de">Wiki: DE</option>
+    </select>
+  </div>
+</header>
+
+<nav class="tabs" id="tabs">
+  <button data-tab="start" class="an"><span>🏠</span>Start</button>
+  <button data-tab="perks"><span>🩸</span>Perks</button>
+  <button data-tab="charaktere"><span>🔪</span>Charaktere</button>
+  <button data-tab="builds"><span>🎲</span>Builds</button>
+  <button data-tab="archiv"><span>📜</span>Archiv</button>
+  <button data-tab="suche"><span>🔎</span>Suche</button>
+  <button data-tab="spieler"><span>📊</span>Spieler</button>
+</nav>
+
+<main id="haupt">
+  <!-- START -->
+  <section id="tab-start" class="tab an">
+    <div class="raster">
+      <article class="karte breit" id="k-schrein"><h2>🛕 Schrein der Geheimnisse</h2><div class="inhalt">Lädt …</div></article>
+      <article class="karte" id="k-events"><h2>🎉 Events</h2><div class="inhalt">Lädt …</div></article>
+      <article class="karte" id="k-codes"><h2>🎁 Codes</h2><div class="inhalt">Lädt …</div></article>
+      <article class="karte" id="k-kill"><h2>⛔ Kill Switch</h2><div class="inhalt">Lädt …</div></article>
+      <article class="karte" id="k-reset"><h2>🏅 Rang-Reset</h2><div class="inhalt">Lädt …</div></article>
+      <article class="karte breit" id="k-news"><h2>📰 Patches & News</h2>
+        <div class="chips" id="news-filter">
+          <button class="an" data-f="">Alle</button><button data-f="patch">Patches</button><button data-f="ptb">PTB / Demnächst</button>
+          <button data-f="event">Events</button><button data-f="kill">Kill Switch</button><button data-f="chapter">Kapitel</button>
+        </div>
+        <div class="inhalt">Lädt …</div></article>
+      <article class="karte breit" id="k-patches"><h2>🧾 Patch-Notes im Wiki</h2><div class="inhalt">Lädt …</div></article>
+    </div>
+    <p class="stand" id="stand"></p>
+  </section>
+
+  <!-- PERKS -->
+  <section id="tab-perks" class="tab">
+    <div class="leiste">
+      <div class="seg" id="perk-rolle"><button data-r="alle" class="an">Alle</button><button data-r="survivor">Survivor</button><button data-r="killer">Killer</button></div>
+      <input id="perk-suche" type="search" placeholder="Perk suchen … (Name, Charakter oder Text)">
+    </div>
+    <div class="chips" id="perk-kat"></div>
+    <p class="klein" id="perk-anzahl"></p>
+    <div class="perkgrid" id="perk-liste"></div>
+  </section>
+
+  <!-- CHARAKTERE -->
+  <section id="tab-charaktere" class="tab">
+    <div class="leiste">
+      <div class="seg" id="char-rolle"><button data-r="alle" class="an">Alle</button><button data-r="survivor">Survivor</button><button data-r="killer">Killer</button></div>
+      <input id="char-suche" type="search" placeholder="Killer oder Survivor suchen …">
+    </div>
+    <div class="charliste" id="char-liste"></div>
+  </section>
+
+  <!-- BUILDS -->
+  <section id="tab-builds" class="tab">
+    <div class="leiste">
+      <div class="seg" id="build-rolle"><button data-r="survivor" class="an">Survivor</button><button data-r="killer">Killer</button></div>
+    </div>
+    <article class="karte">
+      <h2>🎰 Perk-Roulette</h2>
+      <p class="klein">Tippe einen Perk an, um ihn festzuhalten 🔒 – beim Drehen bleibt er.</p>
+      <div class="roulette" id="roulette"></div>
+      <div class="reihe">
+        <button class="haupt" id="dreh">🎲 Drehen</button>
+        <select id="roulette-kat"><option value="">aus allen Perks</option></select>
+        <button id="roulette-teilen">📋 Kopieren</button>
+      </div>
+    </article>
+    <article class="karte">
+      <h2>🧩 Builds nach Spielstil</h2>
+      <p class="klein">Wähle, wie du spielen willst (auch mehrere) – du bekommst passende Perk-Kombis.</p>
+      <div class="stile" id="stile"></div>
+      <div id="vorschlaege"></div>
+    </article>
+  </section>
+
+  <!-- ARCHIV -->
+  <section id="tab-archiv" class="tab">
+    <div class="leiste">
+      <div class="seg" id="archiv-seg"><button data-a="geschichte" class="an">📖 Geschichte</button><button data-a="kapitel">🗓️ Kapitel</button><button data-a="maps">🗺️ Maps</button></div>
+    </div>
+    <div id="archiv-geschichte"></div>
+    <div id="archiv-kapitel" hidden>
+      <div class="leiste"><input id="kap-suche" type="search" placeholder="Kapitel, Killer, Survivor oder Map suchen …"></div>
+      <div class="zeitleiste" id="kap-liste"></div>
+    </div>
+    <div id="archiv-maps" hidden><div class="mapgrid" id="map-liste"></div></div>
+  </section>
+
+  <!-- SUCHE -->
+  <section id="tab-suche" class="tab">
+    <div class="leiste"><input id="wiki-suche" type="search" placeholder="Alles rund um DBD suchen … (Map, Item, Add-on, Skin, Kapitel, Preis …)"></div>
+    <div class="chips" id="schnell"></div>
+    <div id="such-ergebnis"><p class="klein">Tipp: Suche z. B. nach „Gideon Meat Plant“, „Toolbox Add-ons“, „Legion Cosmetics“, „Auric Cells“ oder „Chapter 30“.</p></div>
+  </section>
+
+  <!-- SPIELER -->
+  <section id="tab-spieler" class="tab">
+    <article class="karte">
+      <h2>📊 Spieler-Stats</h2>
+      <p class="klein">Über <a href="https://dbd.tricky.lol" target="_blank" rel="noopener">dbd.tricky.lol</a>. Das Steam-Profil und die Spieldetails müssen <b>öffentlich</b> sein.
+        Füge einfach deinen <b>Steam-Profil-Link</b> ein – die Steam-ID wird automatisch herausgezogen.</p>
+      <div class="reihe"><input id="steam-id" placeholder="https://steamcommunity.com/profiles/7656… oder /id/deinname"><button class="haupt" id="steam-los">Suchen</button></div>
+      <div id="spieler-liste" class="chips"></div>
+      <div id="spieler-ergebnis"></div>
+    </article>
+  </section>
+</main>
+
+<div class="panel" id="panel" hidden>
+  <div class="panel-kopf"><button id="panel-zu">← Zurück</button><b id="panel-titel"></b><a id="panel-wiki" target="_blank" rel="noopener">Im Wiki öffnen ↗</a></div>
+  <div class="panel-schnell" id="panel-schnell"></div>
+  <div class="panel-inhalt" id="panel-inhalt"></div>
+</div>
+<div class="toast" id="toast"></div>
+
+<footer class="fuss">EntityDex · von <a href="https://github.com/FGSeRaser" target="_blank" rel="noopener">FGSeRaser</a> ·
+  Daten: <a href="https://dbd.tricky.lol" target="_blank" rel="noopener">tricky.lol</a>, <a href="https://deadbydaylight.wiki.gg" target="_blank" rel="noopener">DBD-Wiki</a>, Steam, BHVR-Forum ·
+  Fan-Projekt, nicht verbunden mit Behaviour Interactive.</footer>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

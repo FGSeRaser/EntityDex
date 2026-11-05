@@ -1,0 +1,37 @@
+# EntityDex – holt alle 3 Stunden frische DBD-Daten und legt sie in data/.
+# von FGSeRaser – https://github.com/FGSeRaser
+name: Daten aktualisieren
+
+on:
+  schedule:
+    - cron: "17 */3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daten
+  cancel-in-progress: false
+
+jobs:
+  sammeln:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Daten sammeln
+        run: node scripts/sammeln.mjs
+      - name: Änderungen speichern
+        run: |
+          git config user.name "EntityDex-Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/
+          if git diff --cached --quiet; then
+            echo "Keine neuen Daten."
+          else
+            git commit -m "Daten aktualisiert ($(date -u +'%Y-%m-%d %H:%M') UTC)"
+            git push
+          fi

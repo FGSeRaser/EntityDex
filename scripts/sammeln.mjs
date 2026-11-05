@@ -1,0 +1,169 @@
+// EntityDex – Datensammler. Läuft alle 3 Stunden als GitHub Action und schreibt data/*.json.
+// Jede Quelle ist für sich abgesichert: fällt eine aus, bleiben die alten Daten stehen.
+// von FGSeRaser – https://github.com/FGSeRaser
+import { readFile, writeFile, mkdir } from "node:fs/promises";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const HIER = path.dirname(fileURLToPath(import.meta.url));
+const DATA = path.join(HIER, "..", "data");
+const UA = "EntityDex/1.0 (+https://github.com/FGSeRaser/EntityDex)";
+const TRICKY = "https://dbd.tricky.lol/api";
+const WIKI = "https://deadbydaylight.wiki.gg";
+const STEAM_APP = 381210;
+
+const status = {};
+
+async function holen(url, { json = true, timeout = 20000 } = {}) {
+  const ctl = new AbortController();
+  const t = setTimeout(() => ctl.abort(), timeout);
+  try {
+    const r = await fetch(url, { headers: { "User-Agent": UA, Accept: json ? "application/json" : "text/html,*/*" }, signal: ctl.signal });
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    return json ? await r.json() : await r.text();
+  } finally {
+    clearTimeout(t);
+  }
+}
+
+async function schreibe(name, daten) {
+  await writeFile(path.join(DATA, name), JSON.stringify(daten, null, 1), "utf8");
+}
+
+async function lese(name) {
+  try { return JSON.parse(await readFile(path.join(DATA, name), "utf8")); } catch { return null; }
+}
+
+// Führt eine Quelle aus; bei Fehler bleibt die alte Datei, und der Fehler landet in meta.json.
+async function quelle(name, datei, fn) {
+  const start = Date.now();
+  try {
+    const daten = await fn();
+    if (daten == null || (Array.isArray(daten) && daten.length === 0)) throw new Error("leer");
+    await schreibe(datei, { aktualisiert: new Date().toISOString(), daten });
+    status[name] = { ok: true, zeit: new Date().toISOString(), ms: Date.now() - start };
+    console.log(`✔ ${name}`);
+  } catch (e) {
+    const alt = await lese(datei);
+    status[name] = { ok: false, fehler: String(e.message || e), letzteDaten: alt?.aktualisiert || null };
+    console.log(`✘ ${name}: ${e.message || e}`);
+  }
+}
+
+// ------------------------------------------------------------ Hilfen
+function htmlZuText(html) {
+  return String(html || "")
+    .replace(/<script[\s\S]*?<\/script>/gi, "")
+    .replace(/<style[\s\S]*?<\/style>/gi, "")
+    .replace(/<(br|\/p|\/li|\/h\d|\/tr|\/div)[^>]*>/gi, "\n")
+    .replace(/<li[^>]*>/gi, "• ")
+    .replace(/<[^>]+>/g, "")
+    .replace(/&nbsp;/g, " ").replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#0?39;|&apos;/g, "'")
+    .replace(/&lt;/g, "<").replace(/&gt;/g, ">")
+    .replace(/[ \t]+/g, " ").replace(/\n\s*\n\s*\n+/g, "\n\n").trim();
+}
+
+// Codes aus einem Text ziehen: GROSSBUCHSTABEN/Ziffern, 5–24 Zeichen, mit mind. 2 Buchstaben.
+export function codesAusText(text) {
+  const stop = new Set(["DBD", "PTB", "BHVR", "PC", "PS4", "PS5", "XBOX", "NOTE", "UPDATE", "CODES", "CODE", "FREE", "NEW", "EXPIRED", "ACTIVE", "BLOODPOINTS", "REWARD", "REWARDS", "CHARM", "HTTPS", "HTTP", "WWW", "FAQ", "EU", "US", "UK", "DLC", "NOVEMBER", "OCTOBER", "DECEMBER"]);
+  const funde = new Map();
+  const zeilen = String(text).split(/\n/);
+  let abgelaufen = false;
+  for (const z of zeilen) {
+    if (/expired|abgelaufen|no longer|nicht mehr/i.test(z) && z.length < 80) abgelaufen = true;
+    if (/active|aktiv|working|gültig|funktionier/i.test(z) && z.length < 80) abgelaufen = false;
+    for (const m of z.matchAll(/\b([A-Z0-9][A-Z0-9_-]{4,23})\b/g)) {
+      const c = m[1];
+      if (stop.has(c) || /^\d+$/.test(c) || (c.match(/[A-Z]/g) || []).length < 2) continue;
+      if (!funde.has(c)) {
+        const belohnung = (z.replace(c, "").match(/[-–:]\s*(.{3,80})$/) || [])[1] || "";
+        funde.set(c, { code: c, belohnung: belohnung.trim(), abgelaufen });
+      }
+    }
+  }
+  return [...funde.values()];
+}
+
+// ------------------------------------------------------------ Quellen
+async function main() {
+  await mkdir(DATA, { recursive: true });
+
+  // tricky.lol – Schrein, Events, Rang-Reset, Perks, Charaktere
+  await quelle("schrein", "schrein.json", () => holen(`${TRICKY}/shrine`));
+  await quelle("events", "events.json", () => holen(`${TRICKY}/events`));
+  await quelle("rangreset", "rangreset.json", () => holen(`${TRICKY}/rankreset`));
+  await quelle("perks", "perks.json", async () => {
+    const [k, s] = await Promise.all([holen(`${TRICKY}/perks?role=killer`), holen(`${TRICKY}/perks?role=survivor`)]);
+    return { killer: k, survivor: s };
+  });
+  await quelle("charaktere", "charaktere.json", () => holen(`${TRICKY}/characters`));
+
+  // Steam – News & Patch-Notes
+  await quelle("news", "news.json", async () => {
+    const d = await holen(`https://api.steampowered.com/ISteamNews/GetNewsForApp/v2/?appid=${STEAM_APP}&count=40&maxlength=1200&format=json`);
+    const items = d?.appnews?.newsitems || [];
+    return items.map((n) => ({
+      titel: n.title, url: n.url, datum: new Date(n.date * 1000).toISOString(),
+      quelle: n.feedlabel || n.feedname || "", text: htmlZuText(n.contents).replace(/\[\/?[a-z0-9*=]+[^\]]*\]/gi, "").slice(0, 1200),
+      tags: n.tags || [],
+    }));
+  });
+
+  // Kill Switch – offizielle Liste im BHVR-Forum (Knowledge-Base-Artikel 299)
+  await quelle("killswitch", "killswitch.json", async () => {
+    const url = "https://forums.bhvr.com/dead-by-daylight/kb/articles/299-kill-switch-master-list";
+    let text = "";
+    try {
+      const api = await holen("https://forums.bhvr.com/api/v2/articles/299");
+      text = htmlZuText(api.body || api.bodyRendered || "");
+    } catch { /* Fallback: HTML-Seite */ }
+    if (!text) {
+      const html = await holen(url, { json: false });
+      const body = (html.match(/<div[^>]+class="[^"]*userContent[^"]*"[^>]*>([\s\S]*?)<\/div>\s*<\/div>/i) || [])[1]
+        || (html.match(/<article[\s\S]*?<\/article>/i) || [])[0] || html;
+      text = htmlZuText(body);
+    }
+    if (text.length < 40) throw new Error("Kill-Switch-Text nicht gefunden");
+    return { url, text: text.slice(0, 8000) };
+  });
+
+  // Codes – mehrere Quellen probieren, Codes herausfiltern; dazu manuelle Liste (data/codes_manuell.json)
+  await quelle("codes", "codes.json", async () => {
+    const quellen = [
+      { name: "space4games", url: "https://space4games.com/en/wp-json/wp/v2/posts/65840", wp: true },
+    ];
+    const alle = new Map();
+    const genutzt = [];
+    for (const q of quellen) {
+      try {
+        const d = await holen(q.url, { json: q.wp });
+        const text = q.wp ? htmlZuText(d?.content?.rendered || "") : htmlZuText(d);
+        const funde = codesAusText(text);
+        if (funde.length) genutzt.push(q.name);
+        for (const f of funde) if (!alle.has(f.code)) alle.set(f.code, { ...f, quelle: q.name });
+      } catch (e) {
+        console.log(`  Codes-Quelle ${q.name}: ${e.message}`);
+      }
+    }
+    const manuell = (await lese("codes_manuell.json"))?.codes || [];
+    for (const m of manuell) alle.set(m.code, { ...m, quelle: "manuell" });
+    const liste = [...alle.values()];
+    if (!liste.length) throw new Error("keine Codes gefunden");
+    return { quellen: genutzt, codes: liste };
+  });
+
+  // Wiki – letzte Patch-Seiten (für „Was kommt demnächst“)
+  await quelle("patches", "patches.json", async () => {
+    const d = await holen(`${WIKI}/api.php?action=query&list=categorymembers&cmtitle=Category:Patches&cmsort=timestamp&cmdir=desc&cmlimit=15&format=json`);
+    const liste = d?.query?.categorymembers || [];
+    return liste.map((p) => ({ titel: p.title, url: `${WIKI}/wiki/${encodeURIComponent(p.title.replace(/ /g, "_"))}` }));
+  });
+
+  await schreibe("meta.json", { aktualisiert: new Date().toISOString(), quellen: status });
+  const fehler = Object.entries(status).filter(([, s]) => !s.ok).map(([n]) => n);
+  console.log(fehler.length ? `Fertig – Quellen mit Problemen: ${fehler.join(", ")}` : "Fertig – alle Quellen ok");
+}
+
+if (process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.argv[1])) {
+  main().catch((e) => { console.error(e); process.exit(1); });
+}
