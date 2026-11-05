@@ -1,0 +1,1069 @@
+{
+ "aktualisiert": "2026-11-05T21:25:22.094Z",
+ "daten": [
+  {
+   "event": "BPEVENT_Bloodfeast_NAME",
+   "type": "bloodpoints",
+   "name": "BLOODFEAST!",
+   "bonus": 2,
+   "start": 1441929600,
+   "end": 1442016000
+  },
+  {
+   "event": "BPEVENT_Bloodhunt_NAME",
+   "type": "bloodpoints",
+   "name": "BLOODHUNT!",
+   "bonus": 2,
+   "start": 1444521600,
+   "end": 1444694400
+  },
+  {
+   "event": "Halloween2017",
+   "type": "special",
+   "name": "Halloween Event",
+   "bonus": 0,
+   "start": 1508436000,
+   "end": 1509645600
+  },
+  {
+   "event": "Winter2017",
+   "type": "special",
+   "name": "Winter Event",
+   "bonus": 0,
+   "start": 1513188000,
+   "end": 1515002400
+  },
+  {
+   "event": "Winter2019",
+   "type": "special",
+   "name": null,
+   "bonus": 0,
+   "start": 1513188000,
+   "end": 1515002400
+  },
+  {
+   "event": "Lunar",
+   "type": "special",
+   "name": "Howling Grounds",
+   "bonus": 0,
+   "start": 1518721200,
+   "end": 1520276400
+  },
+  {
+   "event": "Summer",
+   "type": "special",
+   "name": "SCORCHING SUMMER BBQ",
+   "bonus": 0,
+   "start": 1533654000,
+   "end": 1534863600
+  },
+  {
+   "event": "BPEVENT_Bloodhunt_NAME",
+   "type": "bloodpoints",
+   "name": "BLOODHUNT!",
+   "bonus": 2,
+   "start": 1537488000,
+   "end": 1538006400
+  },
+  {
+   "event": "Halloween2018",
+   "type": "special",
+   "name": "The Hallowed Blight",
+   "bonus": 0,
+   "start": 1539972000,
+   "end": 1541181600
+  },
+  {
+   "event": "BPEVENT_Bloodrush_NAME",
+   "type": "bloodpoints",
+   "name": "BLOODRUSH!",
+   "bonus": 1.5,
+   "start": 1541444400,
+   "end": 1542049200
+  },
+  {
+   "event": "Winter2018",
+   "type": "special",
+   "name": "Winter Event",
+   "bonus": 0,
+   "start": 1545073200,
+   "end": 1546542000
+  },
+  {
+   "event": "BPEVENT_WinterBloodhunt_NAME",
+   "type": "bloodpoints",
+   "name": "Winter Festival Bloodhunt",
+   "bonus": 2,
+   "start": 1545937200,
+   "end": 1546542000
+  },
+  {
+   "event": "Lunar2019",
+   "type": "special",
+   "name": "MOONRISE",
+   "bonus": 0,
+   "start": 1548874800,
+   "end": 1550084400
+  },
+  {
+   "event": "BPEVENT_Bloodhunt_NAME",
+   "type": "bloodpoints",
+   "name": "BLOODHUNT!",
+   "bonus": 2,
+   "start": 1556820000,
+   "end": 1557165600
+  },
+  {
+   "event": "BPEVENT_Bloodhunt_NAME",
+   "type": "bloodpoints",
+   "name": "BLOODHUNT!",
+   "bonus": 2,
+   "start": 1560535200,
+   "end": 1561053600
+  },
+  {
+   "event": "Anniversary2019",
+   "type": "special",
+   "name": "THIRD YEAR ANNIVERSARY",
+   "bonus": 0,
+   "start": 1560880800,
+   "end": 1562090400
+  },
+  {
+   "event": "BPEVENT_Bloodhunt_NAME",
+   "type": "bloodpoints",
+   "name": "BLOODHUNT!",
+   "bonus": 2,
+   "start": 1569510000,
+   "end": 1569855600
+  },
+  {
+   "event": "Halloween2019",
+   "type": "special",
+   "name": "WITHERING BLIGHT",
+   "bonus": 0,
+   "start": 1572307200,
+   "end": 1573660800
+  },
+  {
+   "event": "BPEVENT_Bloodhunt_NAME",
+   "type": "bloodpoints",
+   "name": "BLOODHUNT!",
+   "bonus": 2,
+   "start": 1572534000,
+   "end": 1572879600
+  },
+  {
+   "event": "BPEVENT_Bloodhunt_NAME",
+   "type": "bloodpoints",
+   "name": "BLOODHUNT!",
+   "bonus": 2,
+   "start": 1577980800,
+   "end": 1578326400
+  },
+  {
+   "event": "Lunar2020",
+   "type": "special",
+   "name": "SCARLET SWARM",
+   "bonus": 0,
+   "start": 1579622400,
+   "end": 1580832000
+  },
+  {
+   "event": "BPEVENT_Bloodrush_NAME",
+   "type": "bloodpoints",
+   "name": "BLOODRUSH!",
+   "bonus": 1.5,
+   "start": 1585148400,
+   "end": 1586962800
+  },
+  {
+   "event": "Anniversary2020",
+   "type": "special",
+   "name": "FOURTH YEAR ANNIVERSARY",
+   "bonus": 0,
+   "start": 1592924400,
+   "end": 1594738800
+  },
+  {
+   "event": "Halloween2020",
+   "type": "special",
+   "name": "THE ETERNAL BLIGHT",
+   "bonus": 0,
+   "start": 1603292400,
+   "end": 1604505600
+  },
+  {
+   "event": "BPEVENT_Bloodhunt_NAME",
+   "type": "bloodpoints",
+   "name": "BLOODHUNT!",
+   "bonus": 2,
+   "start": 1603983600,
+   "end": 1604334599
+  },
+  {
+   "event": "BPEVENT_Bloodrush_NAME",
+   "type": "bloodpoints",
+   "name": "BLOODRUSH!",
+   "bonus": 1.5,
+   "start": 1610726400,
+   "end": 1611331200
+  },
+  {
+   "event": "Lunar2021",
+   "type": "special",
+   "name": "GILDED STAMPEDE",
+   "bonus": 0,
+   "start": 1613059200,
+   "end": 1614268800
+  },
+  {
+   "event": "Gnome2021",
+   "type": "special",
+   "name": null,
+   "bonus": 0,
+   "start": 1620831600,
+   "end": 1622646000
+  },
+  {
+   "event": "Anniversary2021",
+   "type": "special",
+   "name": "FIFTH YEAR ANNIVERSARY",
+   "bonus": 0,
+   "start": 1625065200,
+   "end": 1626966000
+  },
+  {
+   "event": "BPEVENT_Bloodhunt_NAME",
+   "type": "bloodpoints",
+   "name": "BLOODHUNT!",
+   "bonus": 2,
+   "start": 1627570800,
+   "end": 1628002800
+  },
+  {
+   "event": "Halloween2021",
+   "type": "special",
+   "name": "THE MIDNIGHT GROVE",
+   "bonus": 0,
+   "start": 1634828400,
+   "end": 1635955200
+  },
+  {
+   "event": "BPEVENT_Bloodhunt_NAME",
+   "type": "bloodpoints",
+   "name": "BLOODHUNT!",
+   "bonus": 2,
+   "start": 1637856000,
+   "end": 1638201600
+  },
+  {
+   "event": "Winter2021",
+   "type": "special",
+   "name": "BONE CHILL",
+   "bonus": 0,
+   "start": 1639065600,
+   "end": 1640275200
+  },
+  {
+   "event": "BPEVENT_Bloodrush_NAME",
+   "type": "bloodpoints",
+   "name": "BLOODRUSH!",
+   "bonus": 1.5,
+   "start": 1642176000,
+   "end": 1642780800
+  },
+  {
+   "event": "Lunar2022",
+   "type": "special",
+   "name": "LURKING STRIPES",
+   "bonus": 0,
+   "start": 1643137200,
+   "end": 1644346800
+  },
+  {
+   "event": "BPEVENT_Bloodrush_NAME",
+   "type": "bloodpoints",
+   "name": "BLOODRUSH!",
+   "bonus": 1.5,
+   "start": 1646064000,
+   "end": 1646668800
+  },
+  {
+   "event": "BPEVENT_Bloodhunt_NAME",
+   "type": "bloodpoints",
+   "name": "BLOODHUNT!",
+   "bonus": 2,
+   "start": 1653318000,
+   "end": 1653922800
+  },
+  {
+   "event": "Anniversary2022",
+   "type": "special",
+   "name": "TWISTED MASQUERADE",
+   "bonus": 0,
+   "start": 1655393400,
+   "end": 1656603000
+  },
+  {
+   "event": "BPEVENT_Bloodhunt_NAME",
+   "type": "bloodpoints",
+   "name": "BLOODHUNT!",
+   "bonus": 2,
+   "start": 1655996400,
+   "end": 1656342000
+  },
+  {
+   "event": "Halloween2022",
+   "type": "special",
+   "name": "HAUNTED BY DAYLIGHT",
+   "bonus": 0,
+   "start": 1665673200,
+   "end": 1667487600
+  },
+  {
+   "event": "BPEVENT_Bloodrush_NAME",
+   "type": "bloodpoints",
+   "name": "BLOODRUSH!",
+   "bonus": 2,
+   "start": 1669132800,
+   "end": 1669737600
+  },
+  {
+   "event": "Winter2022",
+   "type": "special",
+   "name": "BONE CHILL",
+   "bonus": 0,
+   "start": 1670515200,
+   "end": 1672848000
+  },
+  {
+   "event": "Lunar2023Mini",
+   "type": "special",
+   "name": "MOONLIGHT BURROW",
+   "bonus": 0,
+   "start": 1673971200,
+   "end": 1674583200
+  },
+  {
+   "event": "Lunar2023",
+   "type": "special",
+   "name": "MOONLIGHT BURROW",
+   "bonus": 0,
+   "start": 1674583200,
+   "end": 1676415600
+  },
+  {
+   "event": "Barrel2023",
+   "type": "special",
+   "name": null,
+   "bonus": 0,
+   "start": 1678806000,
+   "end": 1679324400
+  },
+  {
+   "event": "BPEVENT_Bloodhunt_NAME",
+   "type": "bloodpoints",
+   "name": "BLOODHUNT!",
+   "bonus": 2,
+   "start": 1684854000,
+   "end": 1685458800
+  },
+  {
+   "event": "Anniversary2023",
+   "type": "special",
+   "name": "TWISTED MASQUERADE",
+   "bonus": 0,
+   "start": 1687446000,
+   "end": 1689260400
+  },
+  {
+   "event": "BPEVENT_Bloodrush_NAME",
+   "type": "bloodpoints",
+   "name": "BLOODRUSH!",
+   "bonus": 1.5,
+   "start": 1688742000,
+   "end": 1689260400
+  },
+  {
+   "event": "Summer2023",
+   "type": "special",
+   "name": "SCORCHING BBQ",
+   "bonus": 0,
+   "start": 1691074800,
+   "end": 1692284400
+  },
+  {
+   "event": "BPEVENT_Bloodrush_NAME",
+   "type": "bloodpoints",
+   "name": "BLOODRUSH!",
+   "bonus": 1.5,
+   "start": 1694530800,
+   "end": 1695135600
+  },
+  {
+   "event": "Halloween2023",
+   "type": "special",
+   "name": "HAUNTED BY DAYLIGHT",
+   "bonus": 0,
+   "start": 1697652000,
+   "end": 1699297200
+  },
+  {
+   "event": "BPEVENT_Bloodhunt_NAME",
+   "type": "bloodpoints",
+   "name": "BLOODHUNT!",
+   "bonus": 2,
+   "start": 1698678000,
+   "end": 1699286400
+  },
+  {
+   "event": "Winter2023",
+   "type": "special",
+   "name": "BONE CHILL",
+   "bonus": 0,
+   "start": 1702569600,
+   "end": 1704384000
+  },
+  {
+   "event": "BPEVENT_Bloodhunt_NAME",
+   "type": "bloodpoints",
+   "name": "BLOODHUNT!",
+   "bonus": 2,
+   "start": 1703260800,
+   "end": 1703606400
+  },
+  {
+   "event": "BPEVENT_Bloodhunt_NAME",
+   "type": "bloodpoints",
+   "name": "BLOODHUNT!",
+   "bonus": 2,
+   "start": 1705420800,
+   "end": 1706630400
+  },
+  {
+   "event": "DreadByDaylightZodiac",
+   "type": "gamemode",
+   "name": "LIGHTS OUT",
+   "bonus": 0,
+   "start": 1707321600,
+   "end": 1707926400
+  },
+  {
+   "event": "BPEVENT_Bloodrush_NAME",
+   "type": "bloodpoints",
+   "name": "BLOODRUSH!",
+   "bonus": 1.5,
+   "start": 1707926400,
+   "end": 1708444800
+  },
+  {
+   "event": "EddieZodiac",
+   "type": "special",
+   "name": "@#EVENT_Eddie_TITLE",
+   "bonus": 0,
+   "start": 1708617600,
+   "end": 1710259200
+  },
+  {
+   "event": "Spring2024",
+   "type": "special",
+   "name": "BLOOD MOON",
+   "bonus": 0,
+   "start": 1710774000,
+   "end": 1711897200
+  },
+  {
+   "event": "CakeApplepie",
+   "type": "gamemode",
+   "name": "MY LITTLE ONI",
+   "bonus": 0,
+   "start": 1711976400,
+   "end": 1712149200
+  },
+  {
+   "event": "ChocolateBoxV1",
+   "type": "gamemode",
+   "name": "CHAOS SHUFFLE",
+   "bonus": 0,
+   "start": 1714662000,
+   "end": 1715266800
+  },
+  {
+   "event": "BPEVENT_Bloodfeast_NAME",
+   "type": "bloodpoints",
+   "name": "BLOODFEAST!",
+   "bonus": 3,
+   "start": 1715702400,
+   "end": 1716303600
+  },
+  {
+   "event": "BPEVENT_Bloodhunt_NAME",
+   "type": "bloodpoints",
+   "name": "BLOODHUNT!",
+   "bonus": 2,
+   "start": 1717426800,
+   "end": 1718290800
+  },
+  {
+   "event": "Anniversary2024",
+   "type": "gamemode",
+   "name": "TWISTED MASQUERADE",
+   "bonus": 0,
+   "start": 1718290800,
+   "end": 1720105200
+  },
+  {
+   "event": "CalamariV1",
+   "type": "gamemode",
+   "name": "2V8",
+   "bonus": 0,
+   "start": 1721919600,
+   "end": 1723734000
+  },
+  {
+   "event": "BPEVENT_Bloodhunt_NAME",
+   "type": "bloodpoints",
+   "name": "BLOODHUNT!",
+   "bonus": 2,
+   "start": 1725548400,
+   "end": 1726153200
+  },
+  {
+   "event": "FireflyV1",
+   "type": "gamemode",
+   "name": "LIGHTS OUT",
+   "bonus": 0,
+   "start": 1726153200,
+   "end": 1726758000
+  },
+  {
+   "event": "ChocolateBoxEclair",
+   "type": "gamemode",
+   "name": "CHAOS SHUFFLE",
+   "bonus": 0,
+   "start": 1727190000,
+   "end": 1728399600
+  },
+  {
+   "event": "BPEVENT_Bloodfeast_NAME",
+   "type": "bloodpoints",
+   "name": "BLOODFEAST!",
+   "bonus": 3,
+   "start": 1727190000,
+   "end": 1727794800
+  },
+  {
+   "event": "Halloween2024",
+   "type": "gamemode",
+   "name": "HAUNTED BY DAYLIGHT",
+   "bonus": 0,
+   "start": 1729177200,
+   "end": 1730991600
+  },
+  {
+   "event": "CalamariV2",
+   "type": "gamemode",
+   "name": "2V8",
+   "bonus": 0,
+   "start": 1731420000,
+   "end": 1732806000
+  },
+  {
+   "event": "BPEVENT_Bloodfeast_NAME",
+   "type": "bloodpoints",
+   "name": "BLOODFEAST!",
+   "bonus": 3,
+   "start": 1732305600,
+   "end": 1732809600
+  },
+  {
+   "event": "Winter2024",
+   "type": "gamemode",
+   "name": "BONE CHILL",
+   "bonus": 0,
+   "start": 1734019200,
+   "end": 1736265600
+  },
+  {
+   "event": "Winter2024Regular",
+   "type": "special",
+   "name": "BONE CHILL",
+   "bonus": 0,
+   "start": 1734019200,
+   "end": 1736265600
+  },
+  {
+   "event": "BPEVENT_Bloodhunt_NAME",
+   "type": "bloodpoints",
+   "name": "BLOODHUNT!",
+   "bonus": 2,
+   "start": 1734624000,
+   "end": 1735228740
+  },
+  {
+   "event": "BPEVENT_Bloodfeast_NAME",
+   "type": "bloodpoints",
+   "name": "BLOODFEAST!",
+   "bonus": 3,
+   "start": 1735228800,
+   "end": 1736265540
+  },
+  {
+   "event": "ChocolateBoxGelato",
+   "type": "gamemode",
+   "name": "CHAOS SHUFFLE",
+   "bonus": 0,
+   "start": 1737043200,
+   "end": 1738080000
+  },
+  {
+   "event": "BPEVENT_Bloodhunt_NAME",
+   "type": "bloodpoints",
+   "name": "BLOODHUNT!",
+   "bonus": 2,
+   "start": 1737475200,
+   "end": 1738079940
+  },
+  {
+   "event": "BPEVENT_Bloodhunt_NAME",
+   "type": "bloodpoints",
+   "name": "BLOODHUNT!",
+   "bonus": 2,
+   "start": 1738684800,
+   "end": 1739203140
+  },
+  {
+   "event": "CalamariV3",
+   "type": "gamemode",
+   "name": "2V8",
+   "bonus": 0,
+   "start": 1739203200,
+   "end": 1741104000
+  },
+  {
+   "event": "ChocolateBoxHotdog",
+   "type": "gamemode",
+   "name": "CHAOS SHUFFLE",
+   "bonus": 0,
+   "start": 1742310000,
+   "end": 1743433200
+  },
+  {
+   "event": "BPEVENT_Bloodhunt_NAME",
+   "type": "bloodpoints",
+   "name": "BLOODHUNT!",
+   "bonus": 2,
+   "start": 1742310000,
+   "end": 1743433140
+  },
+  {
+   "event": "Spring2025",
+   "type": "gamemode",
+   "name": "BLOOD MOON",
+   "bonus": 0,
+   "start": 1744038000,
+   "end": 1744124400
+  },
+  {
+   "event": "Spring2025Regular",
+   "type": "special",
+   "name": "BLOOD MOON",
+   "bonus": 0,
+   "start": 1744038000,
+   "end": 1744124400
+  },
+  {
+   "event": "ChocolateBoxIcecream",
+   "type": "gamemode",
+   "name": "CHAOS SHUFFLE",
+   "bonus": 0,
+   "start": 1745938860,
+   "end": 1746543600
+  },
+  {
+   "event": "ChocolateBoxIcecream",
+   "type": "gamemode",
+   "name": "CHAOS SHUFFLE",
+   "bonus": 0,
+   "start": 1745946000,
+   "end": 1746543600
+  },
+  {
+   "event": "CalamariV4",
+   "type": "gamemode",
+   "name": "2V8",
+   "bonus": 0,
+   "start": 1747321200,
+   "end": 1748530800
+  },
+  {
+   "event": "ChocolateBoxJerky",
+   "type": "gamemode",
+   "name": "CHAOS SHUFFLE",
+   "bonus": 0,
+   "start": 1748962800,
+   "end": 1750172400
+  },
+  {
+   "event": "BPEVENT_Bloodhunt_NAME",
+   "type": "bloodpoints",
+   "name": "BLOODHUNT!",
+   "bonus": 2,
+   "start": 1748962800,
+   "end": 1750172340
+  },
+  {
+   "event": "MapShowcaseKetchup",
+   "type": "gamemode",
+   "name": "Freddy Fazbear's Pizza",
+   "bonus": 0,
+   "start": 1750172400,
+   "end": 1750777200
+  },
+  {
+   "event": "ChocolateBoxKetchup",
+   "type": "gamemode",
+   "name": "CHAOS SHUFFLE",
+   "bonus": 0,
+   "start": 1750172400,
+   "end": 1750172460
+  },
+  {
+   "event": "Anniversary2025",
+   "type": "gamemode",
+   "name": "TWISTED MASQUERADE",
+   "bonus": 0,
+   "start": 1750950000,
+   "end": 1753369200
+  },
+  {
+   "event": "Anniversary2025Regular",
+   "type": "special",
+   "name": "TWISTED MASQUERADE",
+   "bonus": 0,
+   "start": 1750950000,
+   "end": 1753369200
+  },
+  {
+   "event": "CalamariV5",
+   "type": "gamemode",
+   "name": "2V8",
+   "bonus": 0,
+   "start": 1755010800,
+   "end": 1756220400
+  },
+  {
+   "event": "DbdDay2025",
+   "type": "special",
+   "name": null,
+   "bonus": 0,
+   "start": 1759417200,
+   "end": 1760972400
+  },
+  {
+   "event": "Halloween2025",
+   "type": "gamemode",
+   "name": "HAUNTED BY DAYLIGHT",
+   "bonus": 0,
+   "start": 1760454000,
+   "end": 1762272000
+  },
+  {
+   "event": "Halloween2025Regular",
+   "type": "special",
+   "name": "HAUNTED BY DAYLIGHT",
+   "bonus": 0,
+   "start": 1760454000,
+   "end": 1762272000
+  },
+  {
+   "event": "BPEVENT_Bloodrush_NAME",
+   "type": "bloodpoints",
+   "name": "BLOODRUSH!",
+   "bonus": 1.5,
+   "start": 1761663600,
+   "end": 1762271940
+  },
+  {
+   "event": "CalamariV6",
+   "type": "gamemode",
+   "name": "2V8",
+   "bonus": 0,
+   "start": 1762444800,
+   "end": 1764082800
+  },
+  {
+   "event": "Winter2025",
+   "type": "gamemode",
+   "name": "BONE CHILL",
+   "bonus": 0,
+   "start": 1765296000,
+   "end": 1767715200
+  },
+  {
+   "event": "Winter2025Regular",
+   "type": "special",
+   "name": "BONE CHILL",
+   "bonus": 0,
+   "start": 1765296000,
+   "end": 1767715200
+  },
+  {
+   "event": "ChocolateBoxOmelet",
+   "type": "gamemode",
+   "name": "CHAOS SHUFFLE",
+   "bonus": 0,
+   "start": 1768320000,
+   "end": 1769529600
+  },
+  {
+   "event": "FogCarnival",
+   "type": "special",
+   "name": null,
+   "bonus": 0,
+   "start": 1770134400,
+   "end": 1771344000
+  },
+  {
+   "event": "CalamariV7",
+   "type": "gamemode",
+   "name": "2V8",
+   "bonus": 0,
+   "start": 1770739200,
+   "end": 1772553600
+  },
+  {
+   "event": "LNYPoutine",
+   "type": "special",
+   "name": null,
+   "bonus": 0,
+   "start": 1770912000,
+   "end": 1771948800
+  },
+  {
+   "event": "MapShowcaseQuiche",
+   "type": "gamemode",
+   "name": null,
+   "bonus": 0,
+   "start": 1773759600,
+   "end": 1774364400
+  },
+  {
+   "event": "Spring2026",
+   "type": "gamemode",
+   "name": "BLOOD MOON",
+   "bonus": 0,
+   "start": 1774544400,
+   "end": 1776351600
+  },
+  {
+   "event": "Spring2026Regular",
+   "type": "special",
+   "name": "BLOOD MOON",
+   "bonus": 0,
+   "start": 1774544400,
+   "end": 1776351600
+  },
+  {
+   "event": "CalamariV8",
+   "type": "gamemode",
+   "name": "2V8",
+   "bonus": 0,
+   "start": 1777388400,
+   "end": 1778770800
+  },
+  {
+   "event": "MapShowcaseSushi01",
+   "type": "gamemode",
+   "name": null,
+   "bonus": 0,
+   "start": 1779721200,
+   "end": 1779807600
+  },
+  {
+   "event": "MapShowcaseSushi02",
+   "type": "gamemode",
+   "name": null,
+   "bonus": 0,
+   "start": 1779721200,
+   "end": 1779807600
+  },
+  {
+   "event": "MapShowcaseSushi03",
+   "type": "gamemode",
+   "name": null,
+   "bonus": 0,
+   "start": 1779721200,
+   "end": 1779807600
+  },
+  {
+   "event": "MapShowcaseSushi04",
+   "type": "gamemode",
+   "name": null,
+   "bonus": 0,
+   "start": 1779721200,
+   "end": 1779807600
+  },
+  {
+   "event": "MapShowcaseSushi05",
+   "type": "gamemode",
+   "name": null,
+   "bonus": 0,
+   "start": 1779721200,
+   "end": 1779807600
+  },
+  {
+   "event": "MapShowcaseSushi06",
+   "type": "gamemode",
+   "name": null,
+   "bonus": 0,
+   "start": 1779721200,
+   "end": 1779807600
+  },
+  {
+   "event": "MapShowcaseSushi07",
+   "type": "gamemode",
+   "name": null,
+   "bonus": 0,
+   "start": 1779721200,
+   "end": 1779807600
+  },
+  {
+   "event": "MapShowcaseSushi08",
+   "type": "gamemode",
+   "name": null,
+   "bonus": 0,
+   "start": 1779721200,
+   "end": 1779807600
+  },
+  {
+   "event": "MapShowcaseSushi09",
+   "type": "gamemode",
+   "name": null,
+   "bonus": 0,
+   "start": 1779721200,
+   "end": 1779807600
+  },
+  {
+   "event": "MapShowcaseSushi10",
+   "type": "gamemode",
+   "name": null,
+   "bonus": 0,
+   "start": 1779721200,
+   "end": 1779807600
+  },
+  {
+   "event": "BPEVENT_Bloodhunt_NAME",
+   "type": "bloodpoints",
+   "name": "BLOODHUNT!",
+   "bonus": 2,
+   "start": 1781017200,
+   "end": 1781621940
+  },
+  {
+   "event": "Anniversary2026",
+   "type": "gamemode",
+   "name": "The Black Banquet",
+   "bonus": 0,
+   "start": 1782399600,
+   "end": 1784214000
+  },
+  {
+   "event": "Anniversary2026Regular",
+   "type": "special",
+   "name": "The Black Banquet",
+   "bonus": 0,
+   "start": 1782399600,
+   "end": 1784214000
+  },
+  {
+   "event": "BPEVENT_Bloodhunt_NAME",
+   "type": "bloodpoints",
+   "name": "BLOODHUNT!",
+   "bonus": 2,
+   "start": 1783090800,
+   "end": 1783522740
+  },
+  {
+   "event": "Summer2026",
+   "type": "special",
+   "name": "Summer Screams",
+   "bonus": 0,
+   "start": 1784991600,
+   "end": 1787065200
+  },
+  {
+   "event": "Summer2026",
+   "type": "special",
+   "name": "Summer Screams",
+   "bonus": 0,
+   "start": 1785250800,
+   "end": 1787065200
+  },
+  {
+   "event": "ChocolateBoxSushi",
+   "type": "gamemode",
+   "name": "CHAOS SHUFFLE",
+   "bonus": 0,
+   "start": 1785250800,
+   "end": 1785855540
+  },
+  {
+   "event": "FireflyV1Sushi",
+   "type": "gamemode",
+   "name": "LIGHTS OUT",
+   "bonus": 0,
+   "start": 1785855600,
+   "end": 1786460340
+  },
+  {
+   "event": "CalamariV8Sushi",
+   "type": "gamemode",
+   "name": "2V8",
+   "bonus": 0,
+   "start": 1786460400,
+   "end": 1787064540
+  },
+  {
+   "event": "CalamariV9",
+   "type": "gamemode",
+   "name": "2V8",
+   "bonus": 0,
+   "start": 1788879600,
+   "end": 1790694000
+  },
+  {
+   "event": "DbdDay2026",
+   "type": "special",
+   "name": null,
+   "bonus": 0,
+   "start": 1791298800,
+   "end": 1793026800
+  },
+  {
+   "event": "Halloween2026",
+   "type": "gamemode",
+   "name": "Haunted By Daylight",
+   "bonus": 0,
+   "start": 1791903600,
+   "end": 1793721600
+  },
+  {
+   "event": "Halloween2026Regular",
+   "type": "special",
+   "name": "Haunted By Daylight",
+   "bonus": 0,
+   "start": 1791903600,
+   "end": 1793721600
+  },
+  {
+   "event": "FireflyV1Vanilla",
+   "type": "gamemode",
+   "name": "LIGHTS OUT",
+   "bonus": 0,
+   "start": 1793894400,
+   "end": 1794499200
+  }
+ ]
+}
