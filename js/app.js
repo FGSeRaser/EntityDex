@@ -1,7 +1,7 @@
 // EntityDex – Hauptlogik. von FGSeRaser – https://github.com/FGSeRaser
 import * as D from "./daten.js";
 import * as W from "./wiki.js";
-import { SPIELSTILE, KATEGORIEN, KOMBOS, zufall, vorschlaege, kategorienVon } from "./builds.js";
+import { SPIELSTILE, KATEGORIEN, KOMBOS, zufall, vorschlaege, kategorienVon, enthaelt, norm } from "./builds.js";
 import { KAPITEL, MONATE } from "./kapitel.js";
 import { GESCHICHTE } from "./geschichte.js";
 import { REALMS } from "./maps.js";
@@ -15,6 +15,13 @@ const speicher = {
 };
 function toast(t) { const e = $("#toast"); e.textContent = t; e.style.display = "block"; clearTimeout(e._t); e._t = setTimeout(() => (e.style.display = "none"), 2200); }
 const lang = () => $("#sprache").value;
+const istDe = () => lang() === "de";
+// Anzeige-Name je nach Sprache (deutsch, falls vorhanden) + der jeweils andere Name klein darunter
+const nameVon = (x) => (istDe() && x?.de ? x.de : x?.name || "");
+const andererName = (x) => (x?.de && x.de !== x.name ? (istDe() ? x.name : x.de) : "");
+let deMap = new Map();   // englischer Perkname -> Perk
+async function perkNachName(n) { if (!deMap.size) (await D.perks()).forEach((p) => deMap.set(norm(p.name), p)); return deMap.get(norm(n)) || { name: n }; }
+const perkAnzeige = (n) => nameVon(deMap.get(norm(n)) || { name: n });
 const STIL_NAME = Object.fromEntries([...SPIELSTILE.survivor, ...SPIELSTILE.killer].map((s) => [s.id, s.name]));
 
 // ================================================================ Tabs
@@ -81,8 +88,13 @@ $("#panel-inhalt").addEventListener("click", (e) => {
   const a = e.target.closest("a[data-wiki]");
   if (a) { e.preventDefault(); oeffneWiki(a.dataset.wiki); }
 });
-$("#sprache").value = speicher.get("sprache", "en");
-$("#sprache").addEventListener("change", () => speicher.set("sprache", lang()));
+$("#sprache").value = speicher.get("sprache", "de");
+$("#sprache").addEventListener("change", async () => {
+  speicher.set("sprache", lang());
+  deMap.clear();
+  await perkListe(); await charListe(); buildsNeu(); startSeite();
+  toast(istDe() ? "Deutsche Namen & deutsches Wiki" : "English names & English wiki");
+});
 
 // ================================================================ START
 function leer(text) { return `<p class="fehlt">${esc(text)}</p>`; }
@@ -95,7 +107,8 @@ async function startSeite() {
     kS.innerHTML = `<p class="klein">Wechselt wöchentlich · ${s.ende ? `neu in <span class="countdown" data-cd="${s.ende.getTime()}">${D.countdown(s.ende)}</span> (${D.datum(s.ende)})` : ""}</p>
       <div class="schrein">${s.perks.map((p, i) => `<div class="sperk" data-i="${i}">
         <div class="rolle ${p.rolle || ""}">${p.rolle === "killer" ? "Killer" : p.rolle === "survivor" ? "Survivor" : "Perk"}</div>
-        <b>${esc(p.name)}</b>${p.perk?.charakter ? `<div class="klein">${esc(p.perk.charakter)}</div>` : ""}
+        <b>${esc(p.perk ? nameVon(p.perk) : p.name)}</b>${p.perk && andererName(p.perk) ? `<div class="klein">${esc(andererName(p.perk))}</div>` : ""}
+        ${p.perk?.charakter ? `<div class="klein">${esc(p.perk.charakter)}</div>` : ""}
         ${p.preis ? `<div class="preis">💎 ${Number(p.preis).toLocaleString("de-DE")} Shards</div>` : ""}</div>`).join("")}</div>`;
     $$(".sperk", kS).forEach((el) => el.addEventListener("click", () => perkDetail(s.perks[el.dataset.i].perk || { name: s.perks[el.dataset.i].name })));
   } else kS.innerHTML = leer("Noch keine Schrein-Daten – sie kommen mit dem nächsten automatischen Update.");
@@ -159,7 +172,7 @@ async function startSeite() {
 
 async function newsZeigen(filter) {
   const n = await D.lade("news");
-  let liste = n?.daten || [];
+  let liste = (n?.daten || []).filter((x) => !/[\u0400-\u04FF]/.test(x.titel));
   const muster = { patch: /patch|hotfix|bug ?fix|update/i, ptb: /ptb|public test|coming|upcoming|roadmap|preview|next/i, event: /event|anniversary|halloween|bone chill|lunar|blood hunt|haunted/i, kill: /kill ?switch|disabled|deaktiv/i, chapter: /chapter|kapitel|collection|release/i };
   if (filter) liste = liste.filter((x) => muster[filter].test(x.titel + " " + x.text.slice(0, 300)));
   $("#k-news .inhalt").innerHTML = liste.length ? `<div class="liste">${liste.slice(0, 15).map((x, i) => `
@@ -193,11 +206,12 @@ async function perkListe() {
   const kats = [...new Set(rollen.flatMap((r) => Object.keys(KATEGORIEN[r])))];
   $("#perk-kat").innerHTML = `<button data-k="" class="${perkKat ? "" : "an"}">Alle</button>` + kats.map((k) => `<button data-k="${k}" class="${perkKat === k ? "an" : ""}">${esc(STIL_NAME[k] || k)}</button>`).join("");
   const treffer = alle.filter((p) => (perkRolle === "alle" || p.rolle === perkRolle)
-    && (!perkKat || (KATEGORIEN[p.rolle]?.[perkKat] || []).includes(p.name))
-    && (!q || (p.name + " " + p.charakter + " " + p.text).toLowerCase().includes(q)));
+    && (!perkKat || enthaelt(KATEGORIEN[p.rolle]?.[perkKat], p.name))
+    && (!q || (p.name + " " + (p.de || "") + " " + p.charakter + " " + (p.charakterDe || "") + " " + p.text).toLowerCase().includes(q)));
   $("#perk-anzahl").textContent = `${treffer.length} Perks${alle.ausLive ? "" : " (Offline-Liste – Beschreibungen kommen mit den Live-Daten)"}`;
   $("#perk-liste").innerHTML = treffer.map((p, i) => `<div class="perk" data-i="${i}">
-    <div class="kopfz"><b>${esc(p.name)}</b><span class="rolle ${p.rolle}">${p.rolle === "killer" ? "Killer" : "Survivor"}</span></div>
+    <div class="kopfz"><b>${esc(nameVon(p))}</b><span class="rolle ${p.rolle}">${p.rolle === "killer" ? "Killer" : "Survivor"}</span></div>
+    ${andererName(p) ? `<div class="klein">${esc(andererName(p))}</div>` : ""}
     ${p.charakter ? `<div class="klein">${esc(p.charakter)}</div>` : ""}
     ${p.text ? `<div class="txt">${esc(D.perkText(p))}</div>` : ""}
     <div>${kategorienVon(p.rolle, p.name).map((k) => `<span class="tag">${esc(STIL_NAME[k] || k)}</span>`).join("")}</div></div>`).join("");
@@ -205,13 +219,13 @@ async function perkListe() {
 }
 function perkDetail(p) {
   const kats = p.rolle ? kategorienVon(p.rolle, p.name) : [];
-  const vorspann = `<div class="box"><div class="kopfz" style="display:flex;justify-content:space-between;gap:8px"><b style="font-size:18px">${esc(p.name)}</b>
+  const vorspann = `<div class="box"><div class="kopfz" style="display:flex;justify-content:space-between;gap:8px"><b style="font-size:18px">${esc(nameVon(p))}${andererName(p) ? ` <span class="klein">(${esc(andererName(p))})</span>` : ""}</b>
     ${p.rolle ? `<span class="rolle ${p.rolle}">${p.rolle === "killer" ? "Killer" : "Survivor"}</span>` : ""}</div>
     ${p.charakter ? `<div class="klein">Gehört zu: ${esc(p.charakter)}</div>` : ""}
-    ${p.text ? `<p style="white-space:pre-wrap">${esc(D.perkText(p))}</p>` : ""}
+    ${p.text ? `<p style="white-space:pre-wrap">${esc(D.perkText(p))}</p>${istDe() ? `<p class="klein">Beschreibung aus den Spieldaten (Englisch). Die deutsche Beschreibung steht unten im Wiki.</p>` : ""}` : ""}
     ${kats.length ? `<div>Passt zu: ${kats.map((k) => `<span class="tag rot">${esc(STIL_NAME[k] || k)}</span>`).join("")}</div>` : ""}
     <p class="klein">Unten: Wiki-Seite mit genauen Werten, und über „🕓 Änderungen“ siehst du, wann und wie der Perk geändert wurde und wie er vorher war.</p></div>`;
-  oeffneWiki(p.name, { vorspann, fokus: null });
+  oeffneWiki(istDe() && p.de ? p.de : p.name, { vorspann, fokus: null });
 }
 $("#perk-rolle").addEventListener("click", (e) => { const b = e.target.closest("button"); if (!b) return; perkRolle = b.dataset.r; perkKat = ""; $$("#perk-rolle button").forEach((x) => x.classList.toggle("an", x === b)); perkListe(); });
 $("#perk-kat").addEventListener("click", (e) => { const b = e.target.closest("button"); if (!b) return; perkKat = b.dataset.k; perkListe(); });
@@ -228,21 +242,23 @@ async function charListe() {
     alle = [...m].map(([name, rolle]) => ({ name, rolle })).sort((a, b) => a.name.localeCompare(b.name));
   }
   const q = $("#char-suche").value.trim().toLowerCase();
-  const treffer = alle.filter((c) => (charRolle === "alle" || c.rolle === charRolle) && (!q || c.name.toLowerCase().includes(q)));
+  const treffer = alle.filter((c) => (charRolle === "alle" || c.rolle === charRolle) && (!q || (c.name + " " + (c.de || "")).toLowerCase().includes(q)));
   $("#char-liste").innerHTML = treffer.map((c, i) => {
     const kap = KAPITEL.find((k) => k.killer.includes(c.name) || k.survivor.includes(c.name));
-    return `<div class="char" data-i="${i}"><b>${esc(c.name)}</b><div class="rolle ${c.rolle}">${c.rolle === "killer" ? "Killer" : "Survivor"}</div>
+    return `<div class="char" data-i="${i}"><b>${esc(nameVon(c))}</b>${andererName(c) ? `<div class="klein">${esc(andererName(c))}</div>` : ""}<div class="rolle ${c.rolle}">${c.rolle === "killer" ? "Killer" : "Survivor"}</div>
       ${kap ? `<div class="klein">${esc(kap.name)} · ${kap.monat ? MONATE[kap.monat] + " " : ""}${kap.jahr}</div>` : ""}</div>`;
   }).join("") || leer("Nichts gefunden.");
   $$("#char-liste .char").forEach((el) => el.addEventListener("click", () => charDetail(treffer[el.dataset.i])));
 }
 function charDetail(c) {
   const kap = KAPITEL.find((k) => k.killer.includes(c.name) || k.survivor.includes(c.name));
-  const vorspann = `<div class="box"><b style="font-size:18px">${esc(c.name)}</b> <span class="rolle ${c.rolle}">${c.rolle === "killer" ? "Killer" : "Survivor"}</span>
+  const vorspann = `<div class="box"><b style="font-size:18px">${esc(nameVon(c))}</b>${andererName(c) ? ` <span class="klein">(${esc(andererName(c))})</span>` : ""} <span class="rolle ${c.rolle}">${c.rolle === "killer" ? "Killer" : "Survivor"}</span>
     ${kap ? `<div class="klein">Kam mit: <b>${esc(kap.name)}</b> (${kap.monat ? MONATE[kap.monat] + " " : ""}${kap.jahr})${kap.status === "entfernt" ? " · nicht mehr erhältlich" : ""}</div>` : ""}
     <div class="reihe"><button data-such="${esc(c.name)} Cosmetics">👕 Alle Skins</button><button data-such="${esc(c.name)} DLC price">💰 Preis/DLC</button><button data-such="${esc(c.name)} Lore">📖 Geschichte</button></div>
-    <p class="klein">Tippe oben auf „📖 Geschichte“, „👕 Skins“ oder „🩸 Perks“, um direkt zum Abschnitt zu springen.</p></div>`;
-  oeffneWiki(c.name, { vorspann, fokus: "lore" }).then(() => {
+    ${c.bio ? `<p style="white-space:pre-wrap"><b>Kurz:</b> ${esc(c.bio)}</p>` : ""}
+    ${c.story ? `<details><summary><b>📖 Hintergrundgeschichte (aus dem Spiel, Englisch)</b></summary><p style="white-space:pre-wrap">${esc(c.story)}</p></details>` : ""}
+    <p class="klein">Tippe oben auf „📖 Geschichte“, „👕 Skins“ oder „🩸 Perks“, um im Wiki direkt zum Abschnitt zu springen.</p></div>`;
+  oeffneWiki(istDe() && c.de ? c.de : c.name, { vorspann, fokus: "lore" }).then(() => {
     $$("#panel-inhalt [data-such]").forEach((b) => b.addEventListener("click", () => { panelZu(); history.back(); zeigeTab("suche"); $("#wiki-suche").value = b.dataset.such; wikiSuche(); }));
   });
 }
@@ -255,12 +271,12 @@ let slots = speicher.get("slots", { survivor: [null, null, null, null], killer: 
 let fest = speicher.get("fest", { survivor: [false, false, false, false], killer: [false, false, false, false] });
 let stile = speicher.get("stile", { survivor: ["team"], killer: ["slowdown"] });
 
-async function perkNamen(rolle) { return (await D.perks()).filter((p) => p.rolle === rolle).map((p) => p.name); }
+async function perkNamen(rolle) { await perkNachName(""); return (await D.perks()).filter((p) => p.rolle === rolle).map((p) => p.name); }
 
 async function roulette(drehen = false) {
   const alle = await perkNamen(buildRolle);
   const kat = $("#roulette-kat").value;
-  const pool = kat ? alle.filter((n) => (KATEGORIEN[buildRolle][kat] || []).includes(n)) : alle;
+  const pool = kat ? alle.filter((n) => enthaelt(KATEGORIEN[buildRolle][kat], n)) : alle;
   if (drehen) {
     const behalten = slots[buildRolle].filter((p, i) => fest[buildRolle][i] && p);
     const neu = zufall(pool.length >= 4 ? pool : alle, 4, behalten);
@@ -270,10 +286,10 @@ async function roulette(drehen = false) {
     speicher.set("slots", slots);
   }
   $("#roulette").innerHTML = slots[buildRolle].map((p, i) => `<div class="slot ${fest[buildRolle][i] ? "fest" : ""} ${drehen && !fest[buildRolle][i] ? "dreht" : ""}" data-i="${i}">
-    <b>${p ? esc(p) : "?"}</b><div class="info">${p ? kategorienVon(buildRolle, p).map((k) => STIL_NAME[k]).join(", ") : "Drehen!"}</div></div>`).join("");
+    <b>${p ? esc(perkAnzeige(p)) : "?"}</b><div class="info">${p ? kategorienVon(buildRolle, p).map((k) => STIL_NAME[k]).join(", ") : "Drehen!"}</div></div>`).join("");
   $$("#roulette .slot").forEach((el) => {
     el.addEventListener("click", () => { const i = +el.dataset.i; if (!slots[buildRolle][i]) return; fest[buildRolle][i] = !fest[buildRolle][i]; speicher.set("fest", fest); roulette(); });
-    el.addEventListener("dblclick", async () => { const n = slots[buildRolle][+el.dataset.i]; if (n) perkDetail((await D.perks()).find((p) => p.name === n) || { name: n }); });
+    el.addEventListener("dblclick", async () => { const n = slots[buildRolle][+el.dataset.i]; if (n) perkDetail(await perkNachName(n)); });
   });
 }
 function rouletteKats() {
@@ -291,12 +307,12 @@ async function stilAnzeige() {
   $("#vorschlaege").innerHTML = (stile[buildRolle].length ? "" : `<p class="klein">Kein Stil gewählt – hier alle bewährten Kombos:</p>`) +
     v.map((b) => `<div class="vorschlag"><div class="oben" style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap"><b>${esc(b.name)}</b>
       <span>${String(b.stil).split("+").map((s) => `<span class="tag rot">${esc(STIL_NAME[s] || s)}</span>`).join("")}</span></div>
-      <div class="perks4">${b.perks.map((p) => `<div data-perk="${esc(p)}">${esc(p)}</div>`).join("")}</div>
+      <div class="perks4">${b.perks.map((p) => `<div data-perk="${esc(p)}">${esc(perkAnzeige(p))}</div>`).join("")}</div>
       <div class="klein">${esc(b.warum)}</div>
-      <div class="reihe"><button data-uebernehmen='${esc(JSON.stringify(b.perks))}'>🎰 Ins Roulette übernehmen</button><button data-kopie="${esc(b.perks.join(", "))}">📋 Kopieren</button></div></div>`).join("") +
+      <div class="reihe"><button data-uebernehmen='${esc(JSON.stringify(b.perks))}'>🎰 Ins Roulette übernehmen</button><button data-kopie="${esc(b.perks.map(perkAnzeige).join(", "))}">📋 Kopieren</button></div></div>`).join("") +
     (stile[buildRolle].length ? `<div class="reihe"><button id="neu-mischen">🔀 Neue Mix-Vorschläge</button></div>` : "");
   $("#neu-mischen")?.addEventListener("click", stilAnzeige);
-  $$("#vorschlaege [data-perk]").forEach((el) => el.addEventListener("click", async () => perkDetail((await D.perks()).find((p) => p.name === el.dataset.perk) || { name: el.dataset.perk })));
+  $$("#vorschlaege [data-perk]").forEach((el) => el.addEventListener("click", async () => perkDetail(await perkNachName(el.dataset.perk))));
   $$("#vorschlaege [data-kopie]").forEach((el) => el.addEventListener("click", () => { navigator.clipboard?.writeText(el.dataset.kopie); toast("Build kopiert"); }));
   $$("#vorschlaege [data-uebernehmen]").forEach((el) => el.addEventListener("click", () => {
     const p = JSON.parse(el.dataset.uebernehmen); slots[buildRolle] = [0, 1, 2, 3].map((i) => p[i] || null); fest[buildRolle] = [true, true, true, true];
@@ -309,7 +325,7 @@ function buildsNeu() {
 }
 $("#build-rolle").addEventListener("click", (e) => { const b = e.target.closest("button"); if (!b) return; buildRolle = b.dataset.r; speicher.set("buildRolle", buildRolle); buildsNeu(); });
 $("#dreh").addEventListener("click", () => roulette(true));
-$("#roulette-teilen").addEventListener("click", () => { const t = slots[buildRolle].filter(Boolean).join(", "); if (t) { navigator.clipboard?.writeText(t); toast("Build kopiert"); } });
+$("#roulette-teilen").addEventListener("click", () => { const t = slots[buildRolle].filter(Boolean).map(perkAnzeige).join(", "); if (t) { navigator.clipboard?.writeText(t); toast("Build kopiert"); } });
 
 // ================================================================ SUCHE
 const SCHNELL = ["Realms", "Items", "Add-ons", "Offerings", "Chapters", "Cosmetics", "Auric Cells", "Iridescent Shards", "Status Effects", "Patches", "Bloodweb", "Archives", "Tome", "Game Modes", "Kill Switch"];
@@ -326,10 +342,10 @@ async function wikiSuche() {
   try {
     const t = await W.suche(q, lang());
     // Zusätzlich lokale Treffer: Perks, Kapitel
-    const perks = (await D.perks()).filter((p) => p.name.toLowerCase().includes(q.toLowerCase())).slice(0, 6);
+    const perks = (await D.perks()).filter((p) => (p.name + " " + (p.de || "")).toLowerCase().includes(q.toLowerCase())).slice(0, 6);
     const kaps = KAPITEL.filter((k) => (k.name + k.killer.join() + k.survivor.join() + k.map.join()).toLowerCase().includes(q.toLowerCase())).slice(0, 4);
     ziel.innerHTML =
-      (perks.length ? `<h3 class="klein">PERKS</h3>` + perks.map((p, i) => `<div class="treffer" data-perk="${i}"><b>${esc(p.name)}</b> <span class="rolle ${p.rolle}">${p.rolle}</span><div class="auszug">${esc(D.perkText(p).slice(0, 140))}</div></div>`).join("") : "") +
+      (perks.length ? `<h3 class="klein">PERKS</h3>` + perks.map((p, i) => `<div class="treffer" data-perk="${i}"><b>${esc(nameVon(p))}</b>${andererName(p) ? ` <span class="klein">(${esc(andererName(p))})</span>` : ""} <span class="rolle ${p.rolle}">${p.rolle}</span><div class="auszug">${esc(D.perkText(p).slice(0, 140))}</div></div>`).join("") : "") +
       (kaps.length ? `<h3 class="klein">KAPITEL</h3>` + kaps.map((k) => `<div class="treffer" data-wiki="${esc(k.name)}"><b>${esc(k.name)}</b> <span class="klein">${k.monat ? MONATE[k.monat] + " " : ""}${k.jahr}</span><div class="auszug">${esc([...k.killer, ...k.survivor, ...k.map].join(" · "))}</div></div>`).join("") : "") +
       `<h3 class="klein">IM WIKI</h3>` + (t.length ? t.map((x) => `<div class="treffer" data-wiki="${esc(x.titel)}"><b>${esc(x.titel)}</b><div class="auszug">${x.auszug}</div></div>`).join("") : leer("Im Wiki nichts gefunden."));
     $$("#such-ergebnis [data-wiki]").forEach((el) => el.addEventListener("click", () => oeffneWiki(el.dataset.wiki)));

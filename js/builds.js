@@ -60,13 +60,20 @@ export const KOMBOS = {
   killer: [
     { name: "Gen-Bremse", stil: "slowdown", perks: ["Scourge Hook: Pain Resonance", "Grim Embrace", "Dead Man's Switch", "Deadlock"], warum: "Fast jeder Haken bremst Gens – das Spiel zieht sich für die Survivor." },
     { name: "Treten & Bremsen", stil: "slowdown", perks: ["Pop Goes the Weasel", "Eruption", "Overcharge", "Call of Brine"], warum: "Gen-Kicks werden zum echten Rückschritt, Fehler beim Reparieren tun weh." },
-    { name: "Jäger", stil: "info", perks: ["Lethal Pursuer", "Barbecue & Chilli", "Nowhere to Hide", "Bitter Murmur"], warum: "Survivor zum Start und nach jedem Haken sehen – du findest immer jemanden." },
+    { name: "Jäger", stil: "info", perks: ["Lethal Pursuer", "Barbecue & Chili", "Nowhere to Hide", "Bitter Murmur"], warum: "Survivor zum Start und nach jedem Haken sehen – du findest immer jemanden." },
     { name: "Chase-Monster", stil: "chase", perks: ["Bamboozle", "Brutal Strength", "Enduring", "Spirit Fury"], warum: "Fenster blockieren, Paletten schnell kaputt, durch Paletten-Stuns durchziehen." },
     { name: "Hex-Party", stil: "hex", perks: ["Hex: Undying", "Hex: Ruin", "Hex: Devour Hope", "Hex: Pentimento"], warum: "Undying schützt die anderen Hex-Totems; riskant, aber verheerend, wenn es hält." },
     { name: "Endgame-Falle", stil: "endgame", perks: ["Hex: No One Escapes Death", "No Way Out", "Remember Me", "Blood Warden"], warum: "Wenn die Tore aufgehen, fängt das Spiel für dich erst an." },
     { name: "Schleichen", stil: "stealth", perks: ["Monitor & Abuse", "Tinkerer", "Trail of Torment", "Furtive Chase"], warum: "Kein Terrorradius genau im richtigen Moment – Überraschungsangriffe." },
   ],
 };
+
+// Namen tolerant vergleichen (Akzente, Apostrophe, Chilli/Chili, Favour/Favor …)
+export function norm(n) {
+  return String(n || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase()
+    .replace(/[’`´]/g, "'").replace(/chilli/g, "chili").replace(/favour/g, "favor").replace(/&amp;/g, "&").replace(/[^a-z0-9]/g, "");
+}
+export function enthaelt(liste, name) { const n = norm(name); return (liste || []).some((x) => norm(x) === n); }
 
 export function zufall(liste, n, behalten = []) {
   const pool = liste.filter((p) => !behalten.includes(p));
@@ -77,11 +84,13 @@ export function zufall(liste, n, behalten = []) {
 
 // Vorschläge für gewählte Spielstile: feste Kombos + gemischte Zufalls-Builds aus den Kategorien
 export function vorschlaege(rolle, stile, alle, anzahl = 3) {
-  const kat = KATEGORIEN[rolle];
-  const vorhanden = new Set(alle);
-  const ok = (p) => !vorhanden.size || vorhanden.has(p);
-  const fest = KOMBOS[rolle].filter((k) => stile.includes(k.stil)).map((k) => ({ ...k, perks: k.perks.filter(ok) }));
-  const pool = [...new Set(stile.flatMap((s) => kat[s] || []))].filter(ok);
+  // Kategorie-Namen auf die echten Live-Namen abbilden
+  const live = new Map(alle.map((n) => [norm(n), n]));
+  const echt = (p) => (live.size ? live.get(norm(p)) : p);
+  const kat = Object.fromEntries(Object.entries(KATEGORIEN[rolle]).map(([k, l]) => [k, l.map(echt).filter(Boolean)]));
+  const fest = KOMBOS[rolle].filter((k) => stile.includes(k.stil)).map((k) => ({ ...k, perks: k.perks.map(echt).filter(Boolean) }));
+  const ok = () => true;
+  const pool = [...new Set(stile.flatMap((s) => kat[s] || []))];
   const gemischt = [];
   for (let i = 0; i < anzahl && pool.length >= 4; i++) {
     // Jeden Stil mindestens einmal vertreten, Rest auffüllen
@@ -96,5 +105,5 @@ export function vorschlaege(rolle, stile, alle, anzahl = 3) {
 }
 
 export function kategorienVon(rolle, perk) {
-  return Object.entries(KATEGORIEN[rolle] || {}).filter(([, l]) => l.includes(perk)).map(([k]) => k);
+  return Object.entries(KATEGORIEN[rolle] || {}).filter(([, l]) => enthaelt(l, perk)).map(([k]) => k);
 }

@@ -76,12 +76,31 @@ export function codesAusText(text) {
       const c = m[1];
       if (stop.has(c) || /^\d+$/.test(c) || (c.match(/[A-Z]/g) || []).length < 2) continue;
       if (!funde.has(c)) {
-        const belohnung = (z.replace(c, "").match(/[-–:]\s*(.{3,80})$/) || [])[1] || "";
-        funde.set(c, { code: c, belohnung: belohnung.trim(), abgelaufen });
+        let belohnung = ((z.replace(c, "").match(/[-–:]\s*(.{3,80})$/) || [])[1] || "").trim();
+        if (!/[a-zäöü]{3}/i.test(belohnung) || /^\d+\.\s|\)$/.test(belohnung) && !/\(/.test(belohnung)) belohnung = "";
+        funde.set(c, { code: c, belohnung, abgelaufen });
       }
     }
   }
   return [...funde.values()];
+}
+
+// Englische Wiki-Titel -> deutsche Titel (prop=langlinks), in 50er-Paketen
+async function deutscheTitel(namen) {
+  const map = {};
+  for (let i = 0; i < namen.length; i += 50) {
+    const paket = namen.slice(i, i + 50);
+    const q = new URLSearchParams({ action: "query", titles: paket.join("|"), prop: "langlinks", lllang: "de", lllimit: "max", redirects: "1", format: "json", formatversion: "2" });
+    const d = await holen(`${WIKI}/api.php?${q}`);
+    // Weiterleitungen/Normalisierung zurückverfolgen: Originalname -> endgültiger Titel
+    const ziel = new Map(paket.map((n) => [n, n]));
+    for (const n of d?.query?.normalized || []) for (const [k, v] of ziel) if (v === n.from) ziel.set(k, n.to);
+    for (const r of d?.query?.redirects || []) for (const [k, v] of ziel) if (v === r.from) ziel.set(k, r.to);
+    const de = new Map((d?.query?.pages || []).map((p) => [p.title, p.langlinks?.[0]?.title]));
+    for (const [orig, titel] of ziel) { const t = de.get(titel); if (t && t !== orig) map[orig] = t; }
+    await new Promise((r) => setTimeout(r, 300));
+  }
+  return map;
 }
 
 // ------------------------------------------------------------ Quellen
@@ -101,7 +120,7 @@ async function main() {
   // Steam – News & Patch-Notes
   await quelle("news", "news.json", async () => {
     const d = await holen(`https://api.steampowered.com/ISteamNews/GetNewsForApp/v2/?appid=${STEAM_APP}&count=40&maxlength=1200&format=json`);
-    const items = d?.appnews?.newsitems || [];
+    const items = (d?.appnews?.newsitems || []).filter((n) => !/[\u0400-\u04FF]/.test(n.title + " " + (n.contents || "").slice(0, 200)));
     return items.map((n) => ({
       titel: n.title, url: n.url, datum: new Date(n.date * 1000).toISOString(),
       quelle: n.feedlabel || n.feedname || "", text: htmlZuText(n.contents).replace(/\[\/?[a-z0-9*=]+[^\]]*\]/gi, "").slice(0, 1200),
@@ -157,6 +176,19 @@ async function main() {
     const d = await holen(`${WIKI}/api.php?action=query&list=categorymembers&cmtitle=Category:Patches&cmsort=timestamp&cmdir=desc&cmlimit=15&format=json`);
     const liste = d?.query?.categorymembers || [];
     return liste.map((p) => ({ titel: p.title, url: `${WIKI}/wiki/${encodeURIComponent(p.title.replace(/ /g, "_"))}` }));
+  });
+
+  // Deutsche Namen (Perks & Charaktere) über die Sprach-Verknüpfungen des englischen Wikis
+  await quelle("deutsch", "deutsch.json", async () => {
+    const perksRoh = (await lese("perks.json"))?.daten || {};
+    const charsRoh = (await lese("charaktere.json"))?.daten || {};
+    const { PERKNAMEN } = await import("../js/perknamen.js");
+    const perkNamen = new Set([...PERKNAMEN.survivor, ...PERKNAMEN.killer]);
+    for (const r of ["survivor", "killer"]) for (const p of Object.values(perksRoh[r] || {})) if (p?.name) perkNamen.add(htmlZuText(p.name));
+    const charNamen = new Set(Object.values(charsRoh).map((c) => htmlZuText(c?.name || "")).filter(Boolean));
+    const ergebnis = { perks: await deutscheTitel([...perkNamen]), charaktere: await deutscheTitel([...charNamen]) };
+    if (Object.keys(ergebnis.perks).length < 20) throw new Error("zu wenige deutsche Namen gefunden");
+    return ergebnis;
   });
 
   await schreibe("meta.json", { aktualisiert: new Date().toISOString(), quellen: status });

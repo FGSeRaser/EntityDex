@@ -1,5 +1,5 @@
 // EntityDex – Service Worker: App offline verfügbar, Daten immer frisch. von FGSeRaser
-const CACHE = "entitydex-v1";
+const CACHE = "entitydex-v2";
 const DATEIEN = ["./", "index.html", "css/app.css", "js/app.js", "js/daten.js", "js/wiki.js", "js/builds.js", "js/kapitel.js",
   "js/geschichte.js", "js/maps.js", "js/perknamen.js", "manifest.webmanifest", "icons/icon-192.png", "icons/icon-512.png", "icons/favicon.png"];
 self.addEventListener("install", (e) => { e.waitUntil(caches.open(CACHE).then((c) => c.addAll(DATEIEN)).then(() => self.skipWaiting())); });
