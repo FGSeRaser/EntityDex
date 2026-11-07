@@ -3,11 +3,13 @@
 <h1 align="center">EntityDex</h1>
 <p align="center"><b>Das Dead-by-Daylight-Nachschlagewerk – live, kostenlos, ohne Werbung.</b><br>
 von <a href="https://github.com/FGSeRaser">FGSeRaser</a></p>
-https://fgseraser.github.io/EntityDex/
+
 ---
 
 EntityDex ist eine Web-App (PWA) für alles rund um **Dead by Daylight** – am Handy und am PC, auch ohne dass du gerade spielst.
 Einfach öffnen, nachschlagen, und am Handy über „Zum Startbildschirm hinzufügen“ wie eine echte App mit Icon installieren.
+
+[Zu EntityDex](https://fgseraser.github.io/EntityDex/)
 
 ## Was kann EntityDex?
 
