@@ -1,5 +1,5 @@
 {
- "aktualisiert": "2026-11-07T00:57:46.608Z",
+ "aktualisiert": "2026-11-07T10:20:05.571Z",
  "daten": [
   {
    "titel": "Dead by Daylight apologises to fans after gifting DLC to TheBurntPeanut and has since 'removed the content that was granted'",
@@ -244,14 +244,6 @@
    "datum": "2026-08-15T10:54:11.000Z",
    "quelle": "PCGamesN",
    "text": "The Dead by Daylight Player Intent system lets you send preset messages to your fellow Survivors, making communication easier on the fly. Read the full story on PCGamesN: Dead by Daylight's new chat wheel for Survivors is already better thanks to feedback",
-   "tags": []
-  },
-  {
-   "titel": "Developer Update | Player Intent System",
-   "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1840944183780289",
-   "datum": "2026-08-14T17:00:22.000Z",
-   "quelle": "Community Announcements",
-   "text": "Last week, we hosted a Reddit AMA and on top of having a blast answering your questions, we noticed some topics really got you talking. One of those was the “chat wheel” system we’re working on to help Survivors coordinate and communicate their intentions in-game. So, what better time than the present to share some more details about it with you (including one way your feedback’s already impacted it)!  The system in question is – aptly – called Player Intent. With it, you’ll be able to communicate a range of preset messages to your fellow Survivors at the press of a button, using a radial menu. From thanking them for a heal, to saying you’re going to work on gens, to suggesting you split up, messages focus on the on-the-fly actions that are most useful during a Trial. When a message is chosen using the Player Intent wheel, other Survivors will see it next to your name in the game HUD, keeping your general view clear of distractions while you’re in the middle of looping or hunting for an objective. To help combat message spam, you can expect a cooldown between messages, which will increase if too many messages are sent in a short period. We want this comms wheel to suit different pl",
    "tags": []
   }
  ]
