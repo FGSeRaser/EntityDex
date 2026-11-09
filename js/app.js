@@ -508,13 +508,43 @@ $("#steam-id").addEventListener("keydown", (e) => { if (e.key === "Enter") spiel
 $("#steam-id").addEventListener("paste", () => setTimeout(spielerSuchen, 50));
 
 // ================================================================ Start
+// Notfall: alten Cache und Service Worker löschen und neu laden
+async function reparieren() {
+  try {
+    if ("serviceWorker" in navigator) for (const r of await navigator.serviceWorker.getRegistrations()) await r.unregister();
+    if (window.caches) for (const k of await caches.keys()) await caches.delete(k);
+  } catch {}
+  location.reload();
+}
+function fehlerAnzeigen(was, e) {
+  console.error(was, e);
+  if ($("#fehler-box")) return;
+  const d = document.createElement("div");
+  d.id = "fehler-box";
+  d.className = "box";
+  d.style.cssText = "margin:12px;border:2px solid var(--rot)";
+  d.innerHTML = `<b>Hier ist etwas schiefgelaufen</b> (${esc(was)}: ${esc(e && e.message || e)}).<br>
+    Meist hilft es, die gespeicherte alte Version zu löschen.<br><br>
+    <button class="haupt" id="fehler-reparieren" style="padding:8px 14px;background:var(--rot);color:#fff;border:0;border-radius:10px">Neu laden &amp; reparieren</button>`;
+  document.querySelector("main")?.prepend(d);
+  $("#fehler-reparieren").addEventListener("click", reparieren);
+}
+window.addEventListener("error", (e) => fehlerAnzeigen("Skriptfehler", e.error || e.message));
+window.addEventListener("unhandledrejection", (e) => fehlerAnzeigen("Ladefehler", e.reason));
+
 (async function init() {
-  const start = (location.hash || "").slice(1) || speicher.get("tab", "start");
+  // Service Worker zuerst, damit ein Update auch dann ankommt, wenn unten etwas schiefgeht
+  if ("serviceWorker" in navigator && location.protocol === "https:") {
+    navigator.serviceWorker.register("sw.js").then((r) => r.update()).catch(() => {});
+    // neue Version übernommen → einmal neu laden, damit keine alten Dateien mehr aktiv sind
+    let neu = false;
+    const hatteAlten = !!navigator.serviceWorker.controller;
+    navigator.serviceWorker.addEventListener("controllerchange", () => { if (hatteAlten && !neu) { neu = true; location.reload(); } });
+  }
+  const start = (location.hash || "").slice(1) || "start";
   zeigeTab($("#tab-" + start) ? start : "start", false);
   spielerVerlauf();
-  await startSeite();
-  await perkListe();
-  await charListe();
-  buildsNeu();
-  if ("serviceWorker" in navigator && location.protocol === "https:") navigator.serviceWorker.register("sw.js").catch(() => {});
+  for (const [name, fn] of [["Startseite", startSeite], ["Perks", perkListe], ["Charaktere", charListe], ["Builds", buildsNeu]]) {
+    try { await fn(); } catch (e) { fehlerAnzeigen(name, e); }
+  }
 })();
