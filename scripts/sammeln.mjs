@@ -104,6 +104,34 @@ async function deutscheTitel(namen) {
 }
 
 // ------------------------------------------------------------ Quellen
+// Hauptbild vieler Wiki-Seiten (Perk-Icons, Porträts, Map-Bilder), in 50er-Paketen
+async function seitenBilder(namen, breite = 256) {
+  const map = {};
+  for (let i = 0; i < namen.length; i += 50) {
+    const paket = namen.slice(i, i + 50);
+    const q = new URLSearchParams({ action: "query", titles: paket.join("|"), prop: "pageimages", piprop: "thumbnail|original", pithumbsize: String(breite), redirects: "1", format: "json", formatversion: "2" });
+    const d = await holen(`${WIKI}/api.php?${q}`);
+    const ziel = new Map(paket.map((n) => [n, n]));
+    for (const n of d?.query?.normalized || []) for (const [k, v] of ziel) if (v === n.from) ziel.set(k, n.to);
+    for (const r of d?.query?.redirects || []) for (const [k, v] of ziel) if (v === r.from) ziel.set(k, r.to);
+    const bild = new Map((d?.query?.pages || []).map((p) => [p.title, p.thumbnail?.source || p.original?.source]));
+    for (const [orig, titel] of ziel) { const b = bild.get(titel); if (b) map[orig] = b; }
+    await new Promise((r) => setTimeout(r, 300));
+  }
+  return map;
+}
+
+// Einleitungstext einer Wiki-Seite
+async function seitenText(titel) {
+  try {
+    const q = new URLSearchParams({ action: "parse", page: titel, prop: "text", section: "0", redirects: "1", format: "json", formatversion: "2" });
+    const d = await holen(`${WIKI}/api.php?${q}`);
+    let t = htmlZuText(d?.parse?.text || "");
+    t = t.split("\n").map((z) => z.trim()).filter((z) => z.length > 60 && !/^(Map|Realm|Location|Size|Tiles|Released)/i.test(z)).slice(0, 3).join("\n\n");
+    return t.replace(/\[\d+\]/g, "").slice(0, 1500);
+  } catch { return ""; }
+}
+
 async function main() {
   await mkdir(DATA, { recursive: true });
 
@@ -188,6 +216,26 @@ async function main() {
     const charNamen = new Set(Object.values(charsRoh).map((c) => htmlZuText(c?.name || "")).filter(Boolean));
     const ergebnis = { perks: await deutscheTitel([...perkNamen]), charaktere: await deutscheTitel([...charNamen]) };
     if (Object.keys(ergebnis.perks).length < 20) throw new Error("zu wenige deutsche Namen gefunden");
+    return ergebnis;
+  });
+
+  // Bilder & Map-Texte (für EntityDex und DBD Companion)
+  await quelle("bilder", "bilder.json", async () => {
+    const perksRoh = (await lese("perks.json"))?.daten || {};
+    const charsRoh = (await lese("charaktere.json"))?.daten || {};
+    const perkNamen = new Set();
+    for (const r of ["survivor", "killer"]) for (const p of Object.values(perksRoh[r] || {})) if (p?.name) perkNamen.add(htmlZuText(p.name));
+    const charNamen = [...new Set(Object.values(charsRoh).map((c) => htmlZuText(c?.name || "")).filter(Boolean))];
+    const { REALMS } = await import("../js/maps.js");
+    const mapNamen = REALMS.flatMap((r) => r.maps);
+    const maps = {};
+    const mapBilder = await seitenBilder(mapNamen, 640);
+    for (const r of REALMS) for (const m of r.maps) {
+      maps[m] = { realm: r.realm, bild: mapBilder[m] || null, text: await seitenText(m) };
+      await new Promise((res) => setTimeout(res, 250));
+    }
+    const ergebnis = { perks: await seitenBilder([...perkNamen], 128), charaktere: await seitenBilder(charNamen, 256), maps };
+    if (Object.keys(ergebnis.perks).length < 50) throw new Error("zu wenige Perk-Bilder gefunden");
     return ergebnis;
   });
 
