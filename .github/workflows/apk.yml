@@ -21,7 +21,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: 17
@@ -57,7 +57,7 @@ jobs:
           rm -rf mipmap-anydpi-v26
           for d in mdpi:48 hdpi:72 xhdpi:96 xxhdpi:144 xxxhdpi:192; do
             n=${d%%:*}; s=${d##*:}
-            convert "$GITHUB_WORKSPACE/icons/icon-512.png" -resize ${s}x${s} mipmap-$n/ic_launcher.png
+            cp "$GITHUB_WORKSPACE/icons/icon-192.png" mipmap-$n/ic_launcher.png
             cp mipmap-$n/ic_launcher.png mipmap-$n/ic_launcher_round.png
             rm -f mipmap-$n/ic_launcher_foreground.png
           done
