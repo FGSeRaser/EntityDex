@@ -80,10 +80,27 @@ export const ABSCHNITT_MUSTER = {
 };
 
 // Bild einer Wiki-Seite (Hauptbild)
+let portraits = null;
+async function portraitAusDaten(titel) {
+  try {
+    if (!portraits) {
+      const { lade } = await import("./daten.js");
+      const b = await lade("bilder");
+      portraits = b?.daten?.charNorm || {};
+      for (const [k, v] of Object.entries(b?.daten?.charaktere || {})) portraits[k.toLowerCase().replace(/[^a-z0-9]/g, "")] ??= v;
+    }
+    const u = portraits[String(titel).toLowerCase().replace(/[^a-z0-9]/g, "")];
+    return u && !/IconHelp/i.test(u) ? u : null;
+  } catch { return null; }
+}
+
 export async function bildVonSeite(titel, breite = 800) {
+  const portrait = await portraitAusDaten(titel);
+  if (portrait) return portrait;
   const d = await api("en", { action: "query", titles: titel, prop: "pageimages", piprop: "thumbnail|original", pithumbsize: String(breite), redirects: "1" });
   const p = d?.query?.pages?.[0];
-  return p?.thumbnail?.source || p?.original?.source || null;
+  const u = p?.thumbnail?.source || p?.original?.source || null;
+  return u && /IconHelp/i.test(u) ? null : u;
 }
 
 // Erstes passendes Bild aus der Dateisuche des Wikis

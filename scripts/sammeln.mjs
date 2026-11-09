@@ -121,6 +121,38 @@ async function seitenBilder(namen, breite = 256) {
   return map;
 }
 
+const normName = (n) => String(n || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[’‘`´]/g, "'").replace(/[^a-z0-9]/g, "");
+
+// Alle Perk-Icons des Wikis (IconPerks_xyz.png) – Zuordnung über den Namen, klappt auch bei Sonderzeichen
+async function allePerkIcons() {
+  const icons = {};
+  let weiter = null;
+  for (let i = 0; i < 20; i++) {
+    const q = new URLSearchParams({ action: "query", generator: "allimages", gaiprefix: "IconPerks_", gailimit: "500", prop: "imageinfo", iiprop: "url", iiurlwidth: "128", format: "json", formatversion: "2" });
+    if (weiter) q.set("gaicontinue", weiter);
+    const d = await holen(`${WIKI}/api.php?${q}`);
+    for (const p of d?.query?.pages || []) {
+      const datei = p.title.replace(/^File:IconPerks_/, "").replace(/\.png$/i, "");
+      const url = p.imageinfo?.[0]?.thumburl || p.imageinfo?.[0]?.url;
+      if (url) icons[normName(datei)] = url;
+    }
+    weiter = d?.continue?.gaicontinue;
+    if (!weiter) break;
+    await new Promise((r) => setTimeout(r, 300));
+  }
+  return icons;
+}
+
+// Echtes Porträt einer Charakter-Seite (Datei mit „_Portrait“ im Namen), statt des allgemeinen Killer-Symbols
+async function portraitVonSeite(titel) {
+  const q = new URLSearchParams({ action: "query", titles: titel, generator: "images", gimlimit: "500", prop: "imageinfo", iiprop: "url", iiurlwidth: "256", redirects: "1", format: "json", formatversion: "2" });
+  const d = await holen(`${WIKI}/api.php?${q}`);
+  const bilder = (d?.query?.pages || []).filter((p) => /_Portrait\.png$/i.test(p.title) && !/Icon/i.test(p.title));
+  bilder.sort((a, b) => a.title.length - b.title.length);
+  const b = bilder[0];
+  return b ? b.imageinfo?.[0]?.thumburl || b.imageinfo?.[0]?.url : null;
+}
+
 // Einleitungstext einer Wiki-Seite
 async function seitenText(titel) {
   try {
@@ -212,7 +244,7 @@ async function main() {
     const charsRoh = (await lese("charaktere.json"))?.daten || {};
     const { PERKNAMEN } = await import("../js/perknamen.js");
     const perkNamen = new Set([...PERKNAMEN.survivor, ...PERKNAMEN.killer]);
-    for (const r of ["survivor", "killer"]) for (const p of Object.values(perksRoh[r] || {})) if (p?.name) perkNamen.add(htmlZuText(p.name));
+    for (const r of ["survivor", "killer"]) for (const p of Object.values(perksRoh[r] || {})) if (p?.name) perkNamen.add(htmlZuText(p.name).replace(/\u00a0/g, " ").trim());
     const charNamen = new Set(Object.values(charsRoh).map((c) => htmlZuText(c?.name || "")).filter(Boolean));
     const ergebnis = { perks: await deutscheTitel([...perkNamen]), charaktere: await deutscheTitel([...charNamen]) };
     if (Object.keys(ergebnis.perks).length < 20) throw new Error("zu wenige deutsche Namen gefunden");
@@ -224,7 +256,7 @@ async function main() {
     const perksRoh = (await lese("perks.json"))?.daten || {};
     const charsRoh = (await lese("charaktere.json"))?.daten || {};
     const perkNamen = new Set();
-    for (const r of ["survivor", "killer"]) for (const p of Object.values(perksRoh[r] || {})) if (p?.name) perkNamen.add(htmlZuText(p.name));
+    for (const r of ["survivor", "killer"]) for (const p of Object.values(perksRoh[r] || {})) if (p?.name) perkNamen.add(htmlZuText(p.name).replace(/\u00a0/g, " ").trim());
     const charNamen = [...new Set(Object.values(charsRoh).map((c) => htmlZuText(c?.name || "")).filter(Boolean))];
     const { REALMS } = await import("../js/maps.js");
     const mapNamen = REALMS.flatMap((r) => r.maps);
@@ -234,7 +266,21 @@ async function main() {
       maps[m] = { realm: r.realm, bild: mapBilder[m] || null, text: await seitenText(m) };
       await new Promise((res) => setTimeout(res, 250));
     }
-    const ergebnis = { perks: await seitenBilder([...perkNamen], 128), charaktere: await seitenBilder(charNamen, 256), maps };
+    const perks = await seitenBilder([...perkNamen], 128);
+    // fehlende Perk-Icons über die Dateiliste des Wikis ergänzen (Sonderzeichen, andere Schreibweise)
+    const icons = await allePerkIcons();
+    for (const n of perkNamen) if (!perks[n] && icons[normName(n)]) perks[n] = icons[normName(n)];
+    const charaktere = await seitenBilder(charNamen, 256);
+    for (const n of charNamen) {
+      if (charaktere[n] && /_Portrait/i.test(charaktere[n]) && !/IconHelp/i.test(charaktere[n])) continue;
+      const p = await portraitVonSeite(n);
+      if (p) charaktere[n] = p;
+      await new Promise((r) => setTimeout(r, 250));
+    }
+    // Schlüssel ohne Sonderzeichen für tolerante Suche
+    const perksNorm = {}; for (const [k, v] of Object.entries(perks)) perksNorm[normName(k)] = v;
+    const charNorm = {}; for (const [k, v] of Object.entries(charaktere)) charNorm[normName(k)] = v;
+    const ergebnis = { perks, charaktere, maps, perksNorm, charNorm };
     if (Object.keys(ergebnis.perks).length < 50) throw new Error("zu wenige Perk-Bilder gefunden");
     return ergebnis;
   });

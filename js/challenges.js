@@ -250,7 +250,9 @@ export async function challengesStart() {
   try {
     [PERKS, CHARS] = await Promise.all([D.perks(), D.charaktere()]);
     const b = await D.lade("bilder");
-    BILDER = { charaktere: b?.daten?.charaktere || {}, perks: b?.daten?.perks || {} };
+    const nn = (n) => String(n || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[’‘`´]/g, "'").replace(/[^a-z0-9]/g, "");
+    const mitNorm = (roh, norm) => new Proxy(roh, { get: (o, k) => o[k] || norm?.[nn(k)] });
+    BILDER = { charaktere: mitNorm(b?.daten?.charaktere || {}, b?.daten?.charNorm), perks: mitNorm(b?.daten?.perks || {}, b?.daten?.perksNorm) };
   } catch {}
   zeichne();
   $("#sprache").addEventListener("change", zeichne);
