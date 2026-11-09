@@ -128,12 +128,12 @@ async function allePerkIcons() {
   const icons = {};
   let weiter = null;
   for (let i = 0; i < 20; i++) {
-    const q = new URLSearchParams({ action: "query", generator: "allimages", gaiprefix: "IconPerks_", gailimit: "500", prop: "imageinfo", iiprop: "url", iiurlwidth: "128", format: "json", formatversion: "2" });
+    const q = new URLSearchParams({ action: "query", generator: "allimages", gaiprefix: "IconPerks_", gailimit: "500", prop: "imageinfo", iiprop: "url", format: "json", formatversion: "2" });
     if (weiter) q.set("gaicontinue", weiter);
     const d = await holen(`${WIKI}/api.php?${q}`);
     for (const p of d?.query?.pages || []) {
       const datei = p.title.replace(/^File:IconPerks_/, "").replace(/\.png$/i, "");
-      const url = p.imageinfo?.[0]?.thumburl || p.imageinfo?.[0]?.url;
+      const url = p.imageinfo?.[0]?.url;
       if (url) icons[normName(datei)] = url;
     }
     weiter = d?.continue?.gaicontinue;
@@ -145,12 +145,12 @@ async function allePerkIcons() {
 
 // Echtes Porträt einer Charakter-Seite (Datei mit „_Portrait“ im Namen), statt des allgemeinen Killer-Symbols
 async function portraitVonSeite(titel) {
-  const q = new URLSearchParams({ action: "query", titles: titel, generator: "images", gimlimit: "500", prop: "imageinfo", iiprop: "url", iiurlwidth: "256", redirects: "1", format: "json", formatversion: "2" });
+  const q = new URLSearchParams({ action: "query", titles: titel, generator: "images", gimlimit: "500", prop: "imageinfo", iiprop: "url", redirects: "1", format: "json", formatversion: "2" });
   const d = await holen(`${WIKI}/api.php?${q}`);
   const bilder = (d?.query?.pages || []).filter((p) => /_Portrait\.png$/i.test(p.title) && !/Icon/i.test(p.title));
   bilder.sort((a, b) => a.title.length - b.title.length);
   const b = bilder[0];
-  return b ? b.imageinfo?.[0]?.thumburl || b.imageinfo?.[0]?.url : null;
+  return b ? b.imageinfo?.[0]?.url : null;
 }
 
 // Einleitungstext einer Wiki-Seite
@@ -269,6 +269,7 @@ async function main() {
     const perks = await seitenBilder([...perkNamen], 128);
     // fehlende Perk-Icons über die Dateiliste des Wikis ergänzen (Sonderzeichen, andere Schreibweise)
     const icons = await allePerkIcons();
+    console.log(`  Perk-Icons aus Dateiliste: ${Object.keys(icons).length}`);
     for (const n of perkNamen) if (!perks[n] && icons[normName(n)]) perks[n] = icons[normName(n)];
     const charaktere = await seitenBilder(charNamen, 256);
     for (const n of charNamen) {
