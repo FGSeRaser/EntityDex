@@ -132,7 +132,7 @@ async function allePerkIcons() {
     if (weiter) q.set("gaicontinue", weiter);
     const d = await holen(`${WIKI}/api.php?${q}`);
     for (const p of d?.query?.pages || []) {
-      const datei = p.title.replace(/^File:IconPerks_/, "").replace(/\.png$/i, "");
+      const datei = p.title.replace(/^(File|Datei):IconPerks[ _]/i, "").replace(/\.png$/i, "");
       const url = p.imageinfo?.[0]?.url;
       if (url) icons[normName(datei)] = url;
     }
@@ -145,15 +145,23 @@ async function allePerkIcons() {
 
 // Echtes Porträt einer Charakter-Seite (Datei mit „_Portrait“ im Namen), statt des allgemeinen Killer-Symbols
 async function portraitVonSeite(titel) {
-  const q = new URLSearchParams({ action: "query", titles: titel, generator: "images", gimlimit: "500", prop: "imageinfo", iiprop: "url", redirects: "1", format: "json", formatversion: "2" });
-  const d = await holen(`${WIKI}/api.php?${q}`);
-  const alle = d?.query?.pages || [];
-  if (!alle.length) console.log(`  (keine Bilder auf ${titel}: ${JSON.stringify(d).slice(0, 200)})`);
-  const bilder = alle.filter((p) => /_Portrait\.png$/i.test(p.title) && !/Icon/i.test(p.title));
-  if (!bilder.length && alle.length) console.log(`  (${alle.length} Bilder, z. B. ${alle.slice(0, 8).map((p) => p.title).join(", ")})`);
-  bilder.sort((a, b) => a.title.length - b.title.length);
-  const b = bilder[0];
-  return b ? b.imageinfo?.[0]?.url : null;
+  // Alle Bilder der Seite (mit Fortsetzung), dann das Porträt nehmen, dessen Dateiname zum Charakter passt
+  const alle = [];
+  let weiter = null;
+  for (let i = 0; i < 4; i++) {
+    const q = new URLSearchParams({ action: "query", titles: titel, generator: "images", gimlimit: "500", prop: "imageinfo", iiprop: "url", redirects: "1", format: "json", formatversion: "2" });
+    if (weiter) q.set("gimcontinue", weiter);
+    const d = await holen(`${WIKI}/api.php?${q}`);
+    alle.push(...(d?.query?.pages || []));
+    weiter = d?.continue?.gimcontinue;
+    if (!weiter) break;
+  }
+  const portraits = alle.filter((p) => /[ _]Portrait\.png$/i.test(p.title) && !/Icon|Render/i.test(p.title));
+  const ganz = normName(titel);
+  const woerter = titel.split(/[\s"]+/).map(normName).filter((w) => w.length > 3 && w !== "the");
+  const passt = portraits.find((p) => normName(p.title).includes(ganz))
+    || portraits.find((p) => woerter.some((w) => normName(p.title).includes(w)));
+  return passt ? passt.imageinfo?.[0]?.url || null : null;
 }
 
 // Einleitungstext einer Wiki-Seite
@@ -278,7 +286,7 @@ async function main() {
     for (const n of perkNamen) if (!perks[n] && icons[normName(n)]) perks[n] = icons[normName(n)];
     const charaktere = await seitenBilder(charNamen, 256);
     for (const n of charNamen) {
-      if (charaktere[n] && /_Portrait/i.test(charaktere[n]) && !/IconHelp/i.test(charaktere[n])) continue;
+      if (charaktere[n] && /[_ ]Portrait/i.test(charaktere[n]) && !/IconHelp/i.test(charaktere[n])) continue;
       const p = await portraitVonSeite(n);
       console.log(`  Porträt ${n}: ${p || "keins"}`);
       if (p) charaktere[n] = p;
