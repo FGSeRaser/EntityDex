@@ -281,14 +281,12 @@ async function main() {
     // fehlende Perk-Icons über die Dateiliste des Wikis ergänzen (Sonderzeichen, andere Schreibweise)
     const icons = await allePerkIcons();
     console.log(`  Perk-Icons aus Dateiliste: ${Object.keys(icons).length}`);
-    console.log("  Beispiel-Icons: " + Object.keys(icons).slice(0, 15).join(", "));
     console.log("  Ohne Icon: " + [...perkNamen].filter((n) => !perks[n]).map((n) => `${n} → ${normName(n)}`).join(" | "));
     for (const n of perkNamen) if (!perks[n] && icons[normName(n)]) perks[n] = icons[normName(n)];
     const charaktere = await seitenBilder(charNamen, 256);
     for (const n of charNamen) {
       if (charaktere[n] && /[_ ]Portrait/i.test(charaktere[n]) && !/IconHelp/i.test(charaktere[n])) continue;
       const p = await portraitVonSeite(n);
-      console.log(`  Porträt ${n}: ${p || "keins"}`);
       if (p) charaktere[n] = p;
       await new Promise((r) => setTimeout(r, 250));
     }
