@@ -1,6 +1,16 @@
 {
- "aktualisiert": "2026-11-09T13:47:33.940Z",
+ "aktualisiert": "2026-11-09T22:26:06.548Z",
  "daten": [
+  {
+   "titel": "10.2.2b Backend Patch",
+   "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1848664643356687",
+   "datum": "2026-11-09T19:08:56.000Z",
+   "quelle": "Community Announcements",
+   "text": "Towards the end of October, we released a small balance patch using our new Backend Tunables system, adjusting The Executioner and The Good Guy. After working through your feedback and watching both of them in action, we’d like to further refine those changes. First, let’s get a quick recap of what the Backend Tunables system even is. Put simply, it’s a system that allows us to put small balance changes in your hands quicker, without having to wait for full patch releases. Currently, the system lets us make adjustments to many of our Killers (we’re adding support for more over time) and basekit values. While add-ons and perks aren’t currently supported, this is something we have planned for the future. Now, what’s changing today?  The Executioner: Increased the delay between each segment of Punishment of the Damned to 0.015s (was 0.001s) Dev note: The previous reduction to 0.001s made it a little too efficient, especially when paired with the Iridescent Seal of Metatron add-on. This is a great example of why we intend to add add-on support to Backend Tunables, because sometimes, basekit changes will end up synergizing more than we expected.  The Good Guy: Decreased the time to Scam",
+   "tags": [
+    "patchnotes"
+   ]
+  },
   {
    "titel": "Dead by Daylight apologises to fans after gifting DLC to TheBurntPeanut and has since 'removed the content that was granted'",
    "url": "https://steamstore-a.akamaihd.net/news/externalpost/PC Gamer/1848557880479806",
@@ -236,14 +246,6 @@
    "datum": "2026-08-25T14:30:16.000Z",
    "quelle": "Community Announcements",
    "text": "ContentNew Killer: The JudgmentPOWER: WILL OF THE GODSDIVINE LIGHTPress and hold the Power Button to summon Divine Light for up to 3s.Divine Light moves away from The Judgment and is controlled with camera controls (left/right only).While in this state, Divine Light does not damage Survivors.If Divine Light passes through obstacles, it slows down.While controlling Divine Light, press the Attack Button to Cast it forward.When Cast, it enters a brief delay before it fully activates, damaging and applying Heresy to any Survivors hit. (Survivors inflicted with Heresy are known as Heretics) Dev note: Divine Light enters its lethal state when it becomes larger.When cast Divine Light is lethal and if misses a Survivor by 0.5m, reveal them with Killer Instinct for 2sThe longer Divine Light is controlled: The shorter the Cast delayThe longer the Cast durationDivine Light has a 6 second cooldown. Dev note: Divine Light's delay phase duration starts at 0.9s, after controlling Divine Light for 1s, the delay reaches its minimum of 0.3s ZEALOUSPress the Secondary Ability Button to Exile a Heretic in the Dying State, gaining Zealous. (If they have 2 Hook States, they are killed instead.)Exiling a",
-   "tags": []
-  },
-  {
-   "titel": "Dead by Daylight's new chat wheel for Survivors is already better thanks to feedback",
-   "url": "https://steamstore-a.akamaihd.net/news/externalpost/PCGamesN/1840944183781962",
-   "datum": "2026-08-15T10:54:11.000Z",
-   "quelle": "PCGamesN",
-   "text": "The Dead by Daylight Player Intent system lets you send preset messages to your fellow Survivors, making communication easier on the fly. Read the full story on PCGamesN: Dead by Daylight's new chat wheel for Survivors is already better thanks to feedback",
    "tags": []
   }
  ]
