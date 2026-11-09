@@ -147,7 +147,10 @@ async function allePerkIcons() {
 async function portraitVonSeite(titel) {
   const q = new URLSearchParams({ action: "query", titles: titel, generator: "images", gimlimit: "500", prop: "imageinfo", iiprop: "url", redirects: "1", format: "json", formatversion: "2" });
   const d = await holen(`${WIKI}/api.php?${q}`);
-  const bilder = (d?.query?.pages || []).filter((p) => /_Portrait\.png$/i.test(p.title) && !/Icon/i.test(p.title));
+  const alle = d?.query?.pages || [];
+  if (!alle.length) console.log(`  (keine Bilder auf ${titel}: ${JSON.stringify(d).slice(0, 200)})`);
+  const bilder = alle.filter((p) => /_Portrait\.png$/i.test(p.title) && !/Icon/i.test(p.title));
+  if (!bilder.length && alle.length) console.log(`  (${alle.length} Bilder, z. B. ${alle.slice(0, 8).map((p) => p.title).join(", ")})`);
   bilder.sort((a, b) => a.title.length - b.title.length);
   const b = bilder[0];
   return b ? b.imageinfo?.[0]?.url : null;
@@ -270,11 +273,14 @@ async function main() {
     // fehlende Perk-Icons über die Dateiliste des Wikis ergänzen (Sonderzeichen, andere Schreibweise)
     const icons = await allePerkIcons();
     console.log(`  Perk-Icons aus Dateiliste: ${Object.keys(icons).length}`);
+    console.log("  Beispiel-Icons: " + Object.keys(icons).slice(0, 15).join(", "));
+    console.log("  Ohne Icon: " + [...perkNamen].filter((n) => !perks[n]).map((n) => `${n} → ${normName(n)}`).join(" | "));
     for (const n of perkNamen) if (!perks[n] && icons[normName(n)]) perks[n] = icons[normName(n)];
     const charaktere = await seitenBilder(charNamen, 256);
     for (const n of charNamen) {
       if (charaktere[n] && /_Portrait/i.test(charaktere[n]) && !/IconHelp/i.test(charaktere[n])) continue;
       const p = await portraitVonSeite(n);
+      console.log(`  Porträt ${n}: ${p || "keins"}`);
       if (p) charaktere[n] = p;
       await new Promise((r) => setTimeout(r, 250));
     }
