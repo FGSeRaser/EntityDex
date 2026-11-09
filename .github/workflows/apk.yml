@@ -1,0 +1,109 @@
+# EntityDex – baut die Android-App (APK) und veröffentlicht sie als Release.
+# Läuft nur bei Änderungen an der App selbst, nicht bei den Daten-Updates alle 3 Stunden
+# (die Daten holt die App sowieso live von der Webseite).
+# von FGSeRaser – https://github.com/FGSeRaser
+name: Android-App bauen
+
+on:
+  push:
+    branches: [main]
+    paths: ["index.html", "css/**", "js/**", "icons/**", "manifest.webmanifest", ".github/workflows/apk.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Web-Dateien zusammenstellen
+        run: |
+          mkdir -p app/dist
+          cp -r index.html manifest.webmanifest css js icons data app/dist/
+          rm -f app/dist/sw.js
+
+      - name: Capacitor-Projekt anlegen
+        working-directory: app
+        run: |
+          cat > package.json <<'JSON'
+          { "name": "entitydex-app", "version": "1.0.0", "private": true }
+          JSON
+          npm install --no-audit --no-fund @capacitor/core@6.2.0 @capacitor/cli@6.2.0 @capacitor/android@6.2.0
+          cat > capacitor.config.json <<'JSON'
+          {
+            "appId": "de.fgseraser.entitydex",
+            "appName": "EntityDex",
+            "webDir": "dist",
+            "backgroundColor": "#0b0d10",
+            "android": { "allowMixedContent": false }
+          }
+          JSON
+          npx cap add android
+          npx cap sync android
+
+      - name: App-Symbol setzen
+        working-directory: app/android/app/src/main/res
+        run: |
+          rm -rf mipmap-anydpi-v26
+          for d in mdpi:48 hdpi:72 xhdpi:96 xxhdpi:144 xxxhdpi:192; do
+            n=${d%%:*}; s=${d##*:}
+            convert "$GITHUB_WORKSPACE/icons/icon-512.png" -resize ${s}x${s} mipmap-$n/ic_launcher.png
+            cp mipmap-$n/ic_launcher.png mipmap-$n/ic_launcher_round.png
+            rm -f mipmap-$n/ic_launcher_foreground.png
+          done
+
+      - name: Version setzen und bauen
+        working-directory: app/android
+        run: |
+          V="1.0.${{ github.run_number }}"
+          sed -i "s/versionCode [0-9]*/versionCode ${{ github.run_number }}/; s/versionName \"[^\"]*\"/versionName \"$V\"/" app/build.gradle
+          chmod +x gradlew
+          ./gradlew assembleRelease --no-daemon -q
+          echo "VERSION=$V" >> $GITHUB_ENV
+
+      - name: Signieren
+        env:
+          ED_KEYSTORE_B64: ${{ secrets.ED_KEYSTORE_B64 }}
+          ED_KEYSTORE_PASS: ${{ secrets.ED_KEYSTORE_PASS }}
+        run: |
+          BT=$(ls -d $ANDROID_HOME/build-tools/* | sort -V | tail -1)
+          if [ -n "$ED_KEYSTORE_B64" ]; then
+            echo "$ED_KEYSTORE_B64" | base64 -d > schluessel.jks
+            PASS="$ED_KEYSTORE_PASS"; ALIAS=entitydex
+          else
+            echo "Kein Secret ED_KEYSTORE_B64 – baue mit Einmal-Schlüssel (Updates lassen sich dann nicht drüber installieren)."
+            PASS=$(openssl rand -hex 12); ALIAS=entitydex
+            keytool -genkeypair -keystore schluessel.jks -alias $ALIAS -keyalg RSA -keysize 2048 -validity 10000 -storepass $PASS -keypass $PASS -dname "CN=FGSeRaser" >/dev/null
+          fi
+          IN=app/android/app/build/outputs/apk/release/app-release-unsigned.apk
+          $BT/zipalign -f 4 $IN ausgerichtet.apk
+          $BT/apksigner sign --ks schluessel.jks --ks-key-alias $ALIAS --ks-pass pass:$PASS --key-pass pass:$PASS --out "EntityDex-$VERSION.apk" ausgerichtet.apk
+          rm -f schluessel.jks
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: EntityDex-${{ env.VERSION }}
+          path: EntityDex-${{ env.VERSION }}.apk
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          tag_name: app-v${{ env.VERSION }}
+          name: EntityDex App ${{ env.VERSION }}
+          files: EntityDex-${{ env.VERSION }}.apk
+          body: |
+            **EntityDex** als Android-App – Schrein, Events, Codes, Perks, Charaktere, Builds und **Challenges mit Stream-Plan**.
+            von [FGSeRaser](https://github.com/FGSeRaser)
+
+            **Installieren:** APK auf dem Handy herunterladen und öffnen. Beim ersten Mal „Installation aus dieser Quelle erlauben“ bestätigen.
+
+            **Mit dem DBD Companion verbinden:** In der App unter 🎯 Challenges ein Konto erstellen und im DBD Companion am PC (⚙ Einstellungen → Konto & Sync) mit derselben E-Mail anmelden – Challenges werden automatisch übernommen.

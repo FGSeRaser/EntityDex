@@ -5,6 +5,7 @@ import { SPIELSTILE, KATEGORIEN, KOMBOS, zufall, vorschlaege, kategorienVon, ent
 import { KAPITEL, MONATE } from "./kapitel.js";
 import { GESCHICHTE } from "./geschichte.js";
 import { REALMS } from "./maps.js";
+import { challengesStart } from "./challenges.js";
 
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -544,7 +545,7 @@ window.addEventListener("unhandledrejection", (e) => fehlerAnzeigen("Ladefehler"
   const start = (location.hash || "").slice(1) || "start";
   zeigeTab($("#tab-" + start) ? start : "start", false);
   spielerVerlauf();
-  for (const [name, fn] of [["Startseite", startSeite], ["Perks", perkListe], ["Charaktere", charListe], ["Builds", buildsNeu]]) {
+  for (const [name, fn] of [["Startseite", startSeite], ["Perks", perkListe], ["Charaktere", charListe], ["Builds", buildsNeu], ["Challenges", challengesStart]]) {
     try { await fn(); } catch (e) { fehlerAnzeigen(name, e); }
   }
 })();

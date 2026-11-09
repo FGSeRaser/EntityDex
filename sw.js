@@ -1,9 +1,9 @@
 // EntityDex – Service Worker: App offline verfügbar, aber immer zuerst die neueste Version aus dem Netz. von FGSeRaser
 // Früher wurden HTML/JS dauerhaft aus dem Cache geladen. Nach einem Update konnten so alte und neue Dateien
 // gemischt werden und die Seite blieb leer. Jetzt gilt: erst Netz, nur offline der Cache.
-const CACHE = "entitydex-v3";
+const CACHE = "entitydex-v4";
 const DATEIEN = ["./", "index.html", "css/app.css", "js/app.js", "js/daten.js", "js/wiki.js", "js/builds.js", "js/kapitel.js",
-  "js/geschichte.js", "js/maps.js", "js/perknamen.js", "manifest.webmanifest", "icons/icon-192.png", "icons/icon-512.png", "icons/favicon.png"];
+  "js/geschichte.js", "js/maps.js", "js/perknamen.js", "js/challenges.js", "js/sync.js", "js/sync-config.js", "manifest.webmanifest", "icons/icon-192.png", "icons/icon-512.png", "icons/favicon.png"];
 self.addEventListener("install", (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(DATEIEN.map((d) => new Request(d, { cache: "reload" })))).catch(() => {}).then(() => self.skipWaiting()));
 });

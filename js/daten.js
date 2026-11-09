@@ -4,12 +4,20 @@
 import { PERKNAMEN } from "./perknamen.js";
 
 const cache = {};
+// In der Android-App (oder lokal) zuerst die frischen Daten von der Webseite holen, sonst die mitgelieferten
+const LIVE = "https://fgseraser.github.io/EntityDex/";
+const istWebseite = location.hostname === "fgseraser.github.io";
 export async function lade(name) {
   if (name in cache) return cache[name];
-  try {
-    const r = await fetch(`data/${name}.json?t=${Math.floor(Date.now() / 600000)}`);
-    cache[name] = r.ok ? await r.json() : null;
-  } catch { cache[name] = null; }
+  const t = Math.floor(Date.now() / 600000);
+  const urls = istWebseite ? [`data/${name}.json?t=${t}`] : [`${LIVE}data/${name}.json?t=${t}`, `data/${name}.json`];
+  cache[name] = null;
+  for (const u of urls) {
+    try {
+      const r = await fetch(u);
+      if (r.ok) { cache[name] = await r.json(); break; }
+    } catch {}
+  }
   return cache[name];
 }
 
