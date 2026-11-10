@@ -175,21 +175,13 @@ async function seitenText(titel) {
   } catch { return ""; }
 }
 
-// Schrein: tricky.lol, sonst Ersatzquelle Wiki (tricky liefert nach dem Wechsel manchmal stundenlang HTTP 400)
+// Schrein: tricky.lol meldet direkt nach dem Wechsel (Dienstag 15:00 UTC) oft "shrine is currently unavailable".
+// Dann bleibt die alte Datei stehen; die App zeigt einen Hinweis und der nächste Lauf holt den neuen Schrein.
 async function schreinHolen() {
-  try {
-    return await holen(`${TRICKY}/shrine`);
-  } catch (e) {
-    try {
-      const r = await fetch(`${TRICKY}/shrine`, { headers: { "User-Agent": UA } });
-      console.log("tricky shrine Antwort:", r.status, (await r.text()).slice(0, 300));
-    } catch {}
-    const q = new URLSearchParams({ action: "parse", page: "Shrine of Secrets", prop: "wikitext", format: "json", formatversion: "2" });
-    const d = await holen(`${WIKI}/api.php?${q}`);
-    const text = String(d?.parse?.wikitext ?? "");
-    console.log("Wiki-Schrein (Ausschnitt):", text.slice(0, 2500));
-    throw e;
-  }
+  const r = await fetch(`${TRICKY}/shrine`, { headers: { "User-Agent": UA, Accept: "application/json" } });
+  const text = await r.text();
+  if (!r.ok) throw new Error(`HTTP ${r.status} ${text.slice(0, 120)}`);
+  return JSON.parse(text);
 }
 
 async function main() {
