@@ -4,7 +4,10 @@ name: Daten aktualisieren
 
 on:
   schedule:
-    - cron: "17 */3 * * *"
+    - cron: "17 * * * *"
+    # Schrein wechselt dienstags um 15:00 UTC – direkt danach mehrmals nachsehen
+    - cron: "5,20,40 15 * * 2"
+    - cron: "10,40 16,17 * * 2"
   workflow_dispatch:
   push:
     branches: [main]
