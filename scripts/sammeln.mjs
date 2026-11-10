@@ -10,6 +10,7 @@ const DATA = path.join(HIER, "..", "data");
 const UA = "EntityDex/1.0 (+https://github.com/FGSeRaser/EntityDex)";
 const TRICKY = "https://dbd.tricky.lol/api";
 const WIKI = "https://deadbydaylight.wiki.gg";
+const NIGHTLIGHT = "https://api.nightlight.gg/v1";
 const STEAM_APP = 381210;
 
 const status = {};
@@ -175,13 +176,49 @@ async function seitenText(titel) {
   } catch { return ""; }
 }
 
-// Schrein: tricky.lol meldet direkt nach dem Wechsel (Dienstag 15:00 UTC) oft "shrine is currently unavailable".
-// Dann bleibt die alte Datei stehen; die App zeigt einen Hinweis und der nächste Lauf holt den neuen Schrein.
-async function schreinHolen() {
+// Schrein: tricky.lol meldet nach dem Wechsel (Dienstag 15:00 UTC) oft stundenlang "shrine is currently unavailable"
+// oder liefert noch den alten Schrein. Dann springt NightLight als Ersatzquelle ein.
+async function schreinTricky() {
   const r = await fetch(`${TRICKY}/shrine`, { headers: { "User-Agent": UA, Accept: "application/json" } });
   const text = await r.text();
-  if (!r.ok) throw new Error(`HTTP ${r.status} ${text.slice(0, 120)}`);
-  return JSON.parse(text);
+  if (!r.ok) throw new Error(`tricky.lol HTTP ${r.status} ${text.slice(0, 120)}`);
+  const d = JSON.parse(text);
+  if (!Array.isArray(d?.perks) || d.perks.length === 0) throw new Error("tricky.lol: keine Perks");
+  if (Number(d.end) * 1000 < Date.now()) throw new Error("tricky.lol: noch der alte Schrein");
+  return d;
+}
+
+// NightLight liefert Namen statt IDs – über perks.json auf dieselben IDs wie bei tricky.lol abbilden.
+async function schreinNightLight() {
+  const r = await holen(`${NIGHTLIGHT}/shrine`);
+  const d = r?.data;
+  if (!Array.isArray(d?.perks) || d.perks.length === 0) throw new Error("NightLight: keine Perks");
+  const sek = (s) => Math.floor(Date.parse(/[zZ]|[+-]\d\d:?\d\d$/.test(s) ? s : `${s}Z`) / 1000);
+  const ende = sek(d.end);
+  if (!ende || ende * 1000 < Date.now()) throw new Error("NightLight: noch der alte Schrein");
+  const pd = (await lese("perks.json"))?.daten || {};
+  const nachName = new Map();
+  for (const rolle of Object.values(pd)) for (const [id, p] of Object.entries(rolle || {})) if (p?.name) nachName.set(p.name.toLowerCase(), id);
+  return {
+    id: d.week ?? null,
+    quelle: "nightlight.gg",
+    perks: d.perks.map((p) => ({ id: nachName.get(String(p.name).toLowerCase()) || p.name, name: p.name, bloodpoints: p.bloodpoints, shards: p.shards })),
+    start: sek(d.start),
+    end: ende,
+  };
+}
+
+async function schreinHolen() {
+  try {
+    return await schreinTricky();
+  } catch (e) {
+    console.log(`  Schrein: ${e.message} → versuche NightLight`);
+    try {
+      return await schreinNightLight();
+    } catch (e2) {
+      throw new Error(`${e.message} | ${e2.message}`);
+    }
+  }
 }
 
 async function main() {
