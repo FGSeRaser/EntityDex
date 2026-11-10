@@ -1,4 +1,4 @@
-// EntityDex – Datensammler. Läuft alle 3 Stunden als GitHub Action und schreibt data/*.json.
+// EntityDex – Datensammler. Läuft alle 6 Stunden als GitHub Action und schreibt data/*.json.
 // Jede Quelle ist für sich abgesichert: fällt eine aus, bleiben die alten Daten stehen.
 // von FGSeRaser – https://github.com/FGSeRaser
 import { readFile, writeFile, mkdir } from "node:fs/promises";

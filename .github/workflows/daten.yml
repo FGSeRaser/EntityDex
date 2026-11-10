@@ -1,13 +1,13 @@
-# EntityDex – holt alle 3 Stunden frische DBD-Daten und legt sie in data/.
+# EntityDex – holt alle 6 Stunden frische DBD-Daten und legt sie in data/.
 # von FGSeRaser – https://github.com/FGSeRaser
 name: Daten aktualisieren
 
 on:
   schedule:
-    - cron: "17 * * * *"
-    # Schrein wechselt dienstags um 15:00 UTC – direkt danach mehrmals nachsehen
-    - cron: "5,20,40 15 * * 2"
-    - cron: "10,40 16,17 * * 2"
+    # alle 6 Stunden (00:17, 06:17, 12:17, 18:17 UTC)
+    - cron: "17 */6 * * *"
+    # Schrein wechselt dienstags um 15:00 UTC – einmal kurz danach nachsehen
+    - cron: "40 15 * * 2"
   workflow_dispatch:
   push:
     branches: [main]

@@ -1,5 +1,5 @@
 # EntityDex – baut die Android-App (APK) und veröffentlicht sie als Release.
-# Läuft nur bei Änderungen an der App selbst, nicht bei den Daten-Updates alle 3 Stunden
+# Läuft nur bei Änderungen an der App selbst, nicht bei den Daten-Updates alle 6 Stunden
 # (die Daten holt die App sowieso live von der Webseite).
 # von FGSeRaser – https://github.com/FGSeRaser
 name: Android-App bauen

@@ -106,7 +106,7 @@ async function startSeite() {
   const kS = $("#k-schrein .inhalt");
   const abgelaufen = s?.ende && s.ende.getTime() < Date.now();
   if (s && s.perks.length) {
-    kS.innerHTML = (abgelaufen ? `<p class="fehlt">Der Schrein hat gerade gewechselt (jeden Dienstag 16 Uhr, im Sommer 17 Uhr). Die neuen Perks kommen mit dem nächsten Update, meist innerhalb einer Stunde. Unten stehen noch die Perks der letzten Woche.</p>` : "") + `<p class="klein">Wechselt wöchentlich · ${s.ende && !abgelaufen ? `neu in <span class="countdown" data-cd="${s.ende.getTime()}">${D.countdown(s.ende)}</span> (${D.datum(s.ende)})` : ""}</p>
+    kS.innerHTML = (abgelaufen ? `<p class="fehlt">Der Schrein hat gerade gewechselt (jeden Dienstag 16 Uhr, im Sommer 17 Uhr). Die neuen Perks kommen mit dem nächsten Update, spätestens nach ein paar Stunden. Unten stehen noch die Perks der letzten Woche.</p>` : "") + `<p class="klein">Wechselt wöchentlich · ${s.ende && !abgelaufen ? `neu in <span class="countdown" data-cd="${s.ende.getTime()}">${D.countdown(s.ende)}</span> (${D.datum(s.ende)})` : ""}</p>
       <div class="schrein">${s.perks.map((p, i) => `<div class="sperk" data-i="${i}">
         <div class="rolle ${p.rolle || ""}">${p.rolle === "killer" ? "Killer" : p.rolle === "survivor" ? "Survivor" : "Perk"}</div>
         <b>${esc(p.perk ? nameVon(p.perk) : p.name)}</b>${p.perk && andererName(p.perk) ? `<div class="klein">${esc(andererName(p.perk))}</div>` : ""}

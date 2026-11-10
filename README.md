@@ -42,7 +42,7 @@ Die Builds und Maps im Companion kommen ebenfalls direkt aus EntityDex.
 
 ## So funktioniert es
 
-- **Live-Daten** (Schrein, Events, Codes, Kill Switch, News, Perks, Charaktere) holt eine **GitHub Action alle 3 Stunden** und legt sie in `data/`. Es braucht keinen eigenen Server.
+- **Live-Daten** (Schrein, Events, Codes, Kill Switch, News, Perks, Charaktere) holt eine **GitHub Action alle 6 Stunden** und legt sie in `data/`. Es braucht keinen eigenen Server.
 - **Wiki-Inhalte** (Suche, Perk-Änderungen, Lore, Skins, Bilder) werden beim Öffnen **live** aus dem [offiziellen DBD-Wiki](https://deadbydaylight.wiki.gg) geladen – auf Englisch oder Deutsch (oben umschaltbar).
 - Fällt eine Quelle mal aus, bleiben die letzten Daten stehen. Unten auf der Startseite steht, wann zuletzt aktualisiert wurde und welche Quelle Probleme hatte.
 
@@ -51,7 +51,7 @@ Die Builds und Maps im Companion kommen ebenfalls direkt aus EntityDex.
 1. **GitHub Pages einschalten:** *Settings → Pages → Build and deployment → Source: „Deploy from a branch“ → Branch `main`, Ordner `/ (root)` → Save.*
    Nach ca. 1 Minute läuft die App unter `https://fgseraser.github.io/EntityDex/`.
 2. **Der Action Schreibrechte geben:** *Settings → Actions → General → Workflow permissions → „Read and write permissions“ → Save.*
-3. **Ersten Datenlauf starten:** *Actions → „Daten aktualisieren“ → „Run workflow“.* Danach läuft es automatisch alle 3 Stunden.
+3. **Ersten Datenlauf starten:** *Actions → „Daten aktualisieren“ → „Run workflow“.* Danach läuft es automatisch alle 6 Stunden.
 
 ### Codes selbst ergänzen
 Findet der Sammler einen Code nicht, trag ihn in [`data/codes_manuell.json`](data/codes_manuell.json) ein:
@@ -76,7 +76,7 @@ js/sync.js            Konto & Sync mit dem DBD Companion (Supabase)
 js/sync-config.js     Zugangsdaten der Online-Datenbank
 supabase/             SQL zum Einrichten der Datenbank
 scripts/sammeln.mjs   Datensammler (läuft in der GitHub Action)
-.github/workflows/    Daten alle 3 Stunden, Android-App bei jeder App-Änderung
+.github/workflows/    Daten alle 6 Stunden, Android-App bei jeder App-Änderung
 ```
 
 Lokal testen: `python -m http.server` im Ordner starten und `http://localhost:8000` öffnen.
