@@ -175,11 +175,28 @@ async function seitenText(titel) {
   } catch { return ""; }
 }
 
+// Schrein: tricky.lol, sonst Ersatzquelle Wiki (tricky liefert nach dem Wechsel manchmal stundenlang HTTP 400)
+async function schreinHolen() {
+  try {
+    return await holen(`${TRICKY}/shrine`);
+  } catch (e) {
+    try {
+      const r = await fetch(`${TRICKY}/shrine`, { headers: { "User-Agent": UA } });
+      console.log("tricky shrine Antwort:", r.status, (await r.text()).slice(0, 300));
+    } catch {}
+    const q = new URLSearchParams({ action: "parse", page: "Shrine of Secrets", prop: "wikitext", format: "json", formatversion: "2" });
+    const d = await holen(`${WIKI}/api.php?${q}`);
+    const text = String(d?.parse?.wikitext ?? "");
+    console.log("Wiki-Schrein (Ausschnitt):", text.slice(0, 2500));
+    throw e;
+  }
+}
+
 async function main() {
   await mkdir(DATA, { recursive: true });
 
   // tricky.lol – Schrein, Events, Rang-Reset, Perks, Charaktere
-  await quelle("schrein", "schrein.json", () => holen(`${TRICKY}/shrine`));
+  await quelle("schrein", "schrein.json", schreinHolen);
   await quelle("events", "events.json", () => holen(`${TRICKY}/events`));
   await quelle("rangreset", "rangreset.json", () => holen(`${TRICKY}/rankreset`));
   await quelle("perks", "perks.json", async () => {
