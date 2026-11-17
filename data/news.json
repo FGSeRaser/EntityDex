@@ -1,5 +1,5 @@
 {
- "aktualisiert": "2026-11-17T07:56:46.506Z",
+ "aktualisiert": "2026-11-17T20:56:50.801Z",
  "daten": [
   {
    "titel": "10.2.2b Backend Patch",
@@ -239,14 +239,6 @@
     "mod_reviewed",
     "ModAct_1894963720_1787753280_0"
    ]
-  },
-  {
-   "titel": "10.1.0 | Chorus of Sin",
-   "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1841579228678469",
-   "datum": "2026-08-25T14:30:16.000Z",
-   "quelle": "Community Announcements",
-   "text": "ContentNew Killer: The JudgmentPOWER: WILL OF THE GODSDIVINE LIGHTPress and hold the Power Button to summon Divine Light for up to 3s.Divine Light moves away from The Judgment and is controlled with camera controls (left/right only).While in this state, Divine Light does not damage Survivors.If Divine Light passes through obstacles, it slows down.While controlling Divine Light, press the Attack Button to Cast it forward.When Cast, it enters a brief delay before it fully activates, damaging and applying Heresy to any Survivors hit. (Survivors inflicted with Heresy are known as Heretics) Dev note: Divine Light enters its lethal state when it becomes larger.When cast Divine Light is lethal and if misses a Survivor by 0.5m, reveal them with Killer Instinct for 2sThe longer Divine Light is controlled: The shorter the Cast delayThe longer the Cast durationDivine Light has a 6 second cooldown. Dev note: Divine Light's delay phase duration starts at 0.9s, after controlling Divine Light for 1s, the delay reaches its minimum of 0.3s ZEALOUSPress the Secondary Ability Button to Exile a Heretic in the Dying State, gaining Zealous. (If they have 2 Hook States, they are killed instead.)Exiling a",
-   "tags": []
   }
  ]
 }

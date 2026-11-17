@@ -1,30 +1,30 @@
 {
- "aktualisiert": "2026-11-17T07:56:42.945Z",
+ "aktualisiert": "2026-11-17T20:56:48.509Z",
  "daten": {
-  "id": 618,
+  "id": 619,
   "perks": [
    {
-    "id": "BloodWarden",
+    "id": "Hex_HauntedGround",
     "bloodpoints": 100000,
     "shards": 2000
    },
    {
-    "id": "K33P03",
+    "id": "S49P01",
     "bloodpoints": 100000,
     "shards": 2000
    },
    {
-    "id": "S24P03",
+    "id": "Technician",
     "bloodpoints": 100000,
     "shards": 2000
    },
    {
-    "id": "S25P02",
+    "id": "ZanshinTactics",
     "bloodpoints": 100000,
     "shards": 2000
    }
   ],
-  "start": 1794322800,
-  "end": 1794927599
+  "start": 1794927600,
+  "end": 1795532399
  }
 }
