@@ -1,6 +1,14 @@
 {
- "aktualisiert": "2026-11-18T07:30:10.326Z",
+ "aktualisiert": "2026-11-18T20:33:37.456Z",
  "daten": [
+  {
+   "titel": "The siren call of user-generated content has caught Dead by Daylight in its snare, as Behaviour Interactive outline a big revamp update slated for next year",
+   "url": "https://steamstore-a.akamaihd.net/news/externalpost/Rock, Paper, Shotgun/1849458702695702",
+   "datum": "2026-11-17T21:33:50.000Z",
+   "quelle": "Rock, Paper, Shotgun",
+   "text": "The promise of user-generated content, this idea that you could host a platform that grows infinitely because the people that interact with it make things for it and you don't even have to pay anyone, is an alluring one. And its siren call has come for Dead by Daylight, as developer Behaviour Interactive have outlined the future of the game, which includes a way to make your own bits for the multiplayer horror game. Read more",
+   "tags": []
+  },
   {
    "titel": "10.2.2b Backend Patch",
    "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1848664643356687",
@@ -228,17 +236,6 @@
    "quelle": "GamingOnLinux",
    "text": "Dead by Daylight, my current online co-op fixation to play with the partner, is set for some changes with the anti-cheat systems. Read the full article here: https://www.gamingonlinux.com/2026/08/dead-by-daylight-will-be-testing-out-denuvo-anti-cheat-and-other-systems-soon/",
    "tags": []
-  },
-  {
-   "titel": "Anti-Cheat Trials",
-   "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1842212951296959",
-   "datum": "2026-08-26T13:59:51.000Z",
-   "quelle": "Community Announcements",
-   "text": "Greetings Fog Dwellers! Recently, we shared a survey asking for your thoughts on anti-cheat in Dead by Daylight. One message came through loud and clear: you feel we could be doing more. We hear you and are taking action to bolster and invest in our anti-cheat and security efforts. Put simply, we want you to have the best possible in-game experience, and that means fewer cheaters! While this is just one of many steps in our ongoing commitment to fair play, your involvement and feedback will play a huge part in guiding what comes next.  Beginning next week on September 2nd, we’re kicking off our Anti-Cheat Trials initiative as we investigate how different anti-cheat providers improve your in-game experience. What does this mean for you? Over the coming months, we will be running limited-time trials of these providers’ tools, directly in-game on PC, as we gauge their ability to flag cheating behaviour. By comparing your feedback and overall feelings with hard data from each trial, it’ll help us find a solution that works best for Dead by Daylight and for you, our community.  Next week’s Anti-Cheat Trial – beginning September 2nd – spotlights Denuvo’s anti-cheat solution. Note that th",
-   "tags": [
-    "mod_reviewed",
-    "ModAct_1894963720_1787753280_0"
-   ]
   }
  ]
 }
