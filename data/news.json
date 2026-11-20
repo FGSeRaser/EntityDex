@@ -1,5 +1,5 @@
 {
- "aktualisiert": "2026-11-19T20:38:53.508Z",
+ "aktualisiert": "2026-11-20T07:18:31.856Z",
  "daten": [
   {
    "titel": "The siren call of user-generated content has caught Dead by Daylight in its snare, as Behaviour Interactive outline a big revamp update slated for next year",
@@ -219,14 +219,6 @@
    "datum": "2026-09-01T14:30:25.000Z",
    "quelle": "Community Announcements",
    "text": "ContentKiller UpdatesThe JudgmentIncreased the Divine Light curve window while Zealous to 0.6s (was 0.3s) Dev note: The decoupling of the curve window from the delay phase was good, but the duration of the window was much too short. As a result, we are doubling it to give players a longer window to curve Divine Light while Zealous. We will continue to monitor this value.The KnightDropping a Pallet while being Hunted by a Guard now causes the Guard to path around the PalletIf the resulting Guard Path is greater than 48m the Guard will abandon the HuntDropping a Pallet on a Guard now causes the Guard to move through the PalletPerk UpdatesSurvivor perksRepressed Alliance: After repairing Generators for 40/35/30s, while repairing a Generator alone, use the Active Ability button to block that generator for 15s. (was 55/50/45 seconds)Vigil All Survivors within 16m of you: Lose Exhausted 20/25/30% faster. (was 30/35/40%) After they leave your range, this ends after 15s. Dev note: We have heard concerns that the lower value may be too low. We will be monitoring this change carefully to see if further adjustments are required.Bug FixesAudioFixed an issue where The Judgment voice line about ",
-   "tags": []
-  },
-  {
-   "titel": "Steam Global Top Sellers for week of 25 Aug — 1 September 2026",
-   "url": "https://steamstore-a.akamaihd.net/news/externalpost/SteamDB/1842212951313418",
-   "datum": "2026-09-01T09:00:00.000Z",
-   "quelle": "SteamDB",
-   "text": "* STAR WARS Zero Company™; * How to Fish; * NBA 2K27; * Crimson Desert Enhanced; * Dead by Daylight; * EA SPORTS FC™ 27; * WARDOGS; * Red Dead Redemption 2; * Forza Horizon 6; * ELDEN RING; * excluding free to play games View top 100 on SteamDB",
    "tags": []
   }
  ]
