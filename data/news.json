@@ -1,6 +1,30 @@
 {
- "aktualisiert": "2026-11-20T07:18:31.856Z",
+ "aktualisiert": "2026-11-20T20:23:20.491Z",
  "daten": [
+  {
+   "titel": "Black Friday Arrives in The Fog",
+   "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1849827110433575",
+   "datum": "2026-11-20T20:01:03.000Z",
+   "quelle": "Community Announcements",
+   "text": "No need to bleed your wallet dry. Black Friday arrives in The Fog from November 13th, 12PM EST to December 1st, 12PM EST. Save up to 50% on select items while supplies last.Check out the sale here!",
+   "tags": []
+  },
+  {
+   "titel": "Dead by Daylight confirms Terrifier changes after its new Killer's PTB debut",
+   "url": "https://steamstore-a.akamaihd.net/news/externalpost/PCGamesN/1849827110433416",
+   "datum": "2026-11-20T17:22:51.000Z",
+   "quelle": "PCGamesN",
+   "text": "Behaviour Interactive confirms The Terrifier changes in Dead by Daylight update 10.3.0, responding to the PTB for new Killer Art the Clown. Read the full story on PCGamesN: Dead by Daylight confirms Terrifier changes after its new Killer's PTB debut",
+   "tags": []
+  },
+  {
+   "titel": "PTB-to-Live Update | The Terrifier",
+   "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1849827110432541",
+   "datum": "2026-11-20T15:00:35.000Z",
+   "quelle": "Community Announcements",
+   "text": "Coming away from the 10.3.0 PTB, we saw how much of a blast you had testing out (and coming face-to-face with) The Terrifier's Bag of Toys! With the release of 10.3.0 right around the corner, we wanted to give you a sneak peek at the Killer Power and addon changes you can expect to see.  The Terrifier – Killer Power Starting off, we’ve made a handful of adjustments to some of The Terrifier’s Toys: Bike Horn: We’ve increased the detection radius of the Horn as we noticed that some players found it difficult to aim at long range. Acid Bottle: The Acid Bottle was a little too effective while looping, so we toned down how quickly it could be thrown, while increasing the duration of Acid Pools to keep the focus on more thoughtful and strategic ricochets and setups. Handgun: We’ve increased movement speed while aiming the Handgun, making aiming feel slightly more forgiving, while still limiting its effectiveness in loops. On top of these changes, we've also increased the duration of Torture, and have made it so that downing a Tortured Survivor with a Toy maxed out on Deadliness now inflicts the Terrified state. This gives the Killer more time to plan out their plays and keeps Toy progres",
+   "tags": []
+  },
   {
    "titel": "The siren call of user-generated content has caught Dead by Daylight in its snare, as Behaviour Interactive outline a big revamp update slated for next year",
    "url": "https://steamstore-a.akamaihd.net/news/externalpost/Rock, Paper, Shotgun/1849458702695702",
@@ -195,30 +219,6 @@
    "datum": "2026-09-04T17:00:16.000Z",
    "quelle": "Community Announcements",
    "text": "Celebrate Dead by Daylight: Chorus of Sin with a limited-edition merch collection inspired by the divine horror of The Judgment. Ephemeral as the whims of the divine, the Chorus of Sin collection will be available from August 27 to September 14, 12 p.m. ET One limited release. No restock. Get yours now.",
-   "tags": []
-  },
-  {
-   "titel": "Dead by Daylight is now testing Denuvo, but \"will not include\" its anti-piracy DRM",
-   "url": "https://steamstore-a.akamaihd.net/news/externalpost/PCGamesN/1842846814443069",
-   "datum": "2026-09-03T10:45:28.000Z",
-   "quelle": "PCGamesN",
-   "text": "A new Dead by Daylight anti-cheat trial is testing Denuvo's protection tool, but Behaviour Interactive makes clear there will be no DRM. Read the full story on PCGamesN: Dead by Daylight is now testing Denuvo, but \"will not include\" its anti-piracy DRM",
-   "tags": []
-  },
-  {
-   "titel": "Anti-Cheat Trials are now Live",
-   "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1842846814440602",
-   "datum": "2026-09-02T15:00:09.000Z",
-   "quelle": "Community Announcements",
-   "text": "Last week, we announced our plans to kick off our Anti-Cheat Trials initiative, and today it's here!Starting today, we will be trialing Denuvo's Anti-Cheat solution. Note that this does not and will not include anything related to DRM, as Denuvo Anti-Cheat is different from Denuvo Anti-Piracy. Another look at the difference between the two: What we ARE trialing: Denuvo Anti-Cheat A tool that detects cheats in-game, identifying people who try to get unfair advantages before they can disrupt fair play What we ARE NOT trialing: Denuvo Anti-Piracy Tools that prevent the cracking and unauthorized access of game content  In case you missed it, here's what you can expect:Anti-Cheat Trials are exclusive to Steam and cross-play will not be impacted.We’re continuously testing the compatibility and performance of each anti-cheat provider to ensure you have a seamless experience. Compatibility with Steam Deck and Proton has been tested and will continue to be supported.The first time you launch the game during the Anti-Cheat Trial, you will be prompted to install Denuvo Anti-Cheat. This is required to play the game.Please continue to use the in-game report function as normal to report any chea",
-   "tags": []
-  },
-  {
-   "titel": "10.1.1 | Bugfix Patch",
-   "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1842212951313573",
-   "datum": "2026-09-01T14:30:25.000Z",
-   "quelle": "Community Announcements",
-   "text": "ContentKiller UpdatesThe JudgmentIncreased the Divine Light curve window while Zealous to 0.6s (was 0.3s) Dev note: The decoupling of the curve window from the delay phase was good, but the duration of the window was much too short. As a result, we are doubling it to give players a longer window to curve Divine Light while Zealous. We will continue to monitor this value.The KnightDropping a Pallet while being Hunted by a Guard now causes the Guard to path around the PalletIf the resulting Guard Path is greater than 48m the Guard will abandon the HuntDropping a Pallet on a Guard now causes the Guard to move through the PalletPerk UpdatesSurvivor perksRepressed Alliance: After repairing Generators for 40/35/30s, while repairing a Generator alone, use the Active Ability button to block that generator for 15s. (was 55/50/45 seconds)Vigil All Survivors within 16m of you: Lose Exhausted 20/25/30% faster. (was 30/35/40%) After they leave your range, this ends after 15s. Dev note: We have heard concerns that the lower value may be too low. We will be monitoring this change carefully to see if further adjustments are required.Bug FixesAudioFixed an issue where The Judgment voice line about ",
    "tags": []
   }
  ]
