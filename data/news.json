@@ -1,6 +1,22 @@
 {
- "aktualisiert": "2026-11-24T09:55:40.769Z",
+ "aktualisiert": "2026-11-24T22:28:01.817Z",
  "daten": [
+  {
+   "titel": "The Terrifier Chapter is now available on Steam!",
+   "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1849827110447868",
+   "datum": "2026-11-24T21:20:20.000Z",
+   "quelle": "Community Announcements",
+   "text": "Dead by Daylight: Terrifier brings horror icons The Terrifier and Sienna Shaw into The Fog alongside a new original Map, Hartshorne Mall. Purchasing this add-on unlocks the Art Crispies Cereal charm and the Clown Cafe Banner. Dead by Daylight: Terrifier brings horror icons The Terrifier and Sienna Shaw into The Fog alongside a new original Map, Hartshorne Mall.The Terrifier Chapter includes:New Killer: The TerrifierNew Survivor: Sienna ShawAn exclusive Art Crispies Cereal charmAn exclusive Clown Cafe BannerA new original Map: Hartshorne Mall See you in The Fog.",
+   "tags": []
+  },
+  {
+   "titel": "10.3.0 | Terrifier Patch Notes",
+   "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1849827110447019",
+   "datum": "2026-11-24T17:01:39.000Z",
+   "quelle": "Community Announcements",
+   "text": "ContentNew Killer: The TerrifierPOWER: BAG OF TOYS Hold the Ability Button to open the Bag of Toys and choose from 2 Toys. New Toys are randomly available each time the bag is opened. Closing the bag triggers a 10s cooldown. SPECIAL ITEMS: TOYS Each Toy is single-use. Acid Bottle Hold Power Button to aim, then press Attack Button to throw an Acid Bottle which breaks on impact, creating an Acid Puddle that lasts for 1.5s. Inflicts Torture on injured Survivors. If a wall is hit with an Acid Bottle, a puddle will form at its base, so long as the impact point is below 8m. Flamethrower Hold Power Button to ready, then press Attack Button to unleash a stream of Flames. Inflicts Torture on injured Survivors. Burning Flames ignite the environment for up to 6s, as well as Generators, Windows, and Downed Pallets for 6s.Handgun Hold Power Button to aim, then press Attack Button to fire a single round. Inflicts Torture on injured Survivors.Flail Hold Power Button to wield the Flail, then press Attack Button to strike. Inflicts Torture on injured Survivors.5m range.Strikes over Window vaults, Pallets, and short objects.Bike Horn Hold Power Button to ready, then press Attack Button to squeeze th",
+   "tags": []
+  },
   {
    "titel": "Black Friday Arrives in The Fog",
    "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1849827110433575",
@@ -186,32 +202,6 @@
    "quelle": "Community Announcements",
    "text": "FeaturesSurvivor Intent SystemSurvivors can send and receive text messages during a matchBy pressing and holding the scroll-button when using a Mouse, or the right d-pad input on controllers, players can open the messages wheel8 messages are available for players to select and sendHovering the message, and releasing scroll-button/right, will send the messageInputs are customizableSent messages are shown to all Survivors, next to their information on the left side of the screenMessages are predefined.Players can customize on Settings their messages selectionOn Match Details, Players can mute and unmute any other player during a matchMuting is not communicated to the muted playerOn Settings, players can deactivate the system, if they want to opt outOn Match Details, Players that have deactivated the system are marked with a \"no\" icon to surface that they have opt outFor reducing spamming, a 1s cooldown is applied when players send messages too quickly.If a player keeps spamming, their cooldown will increase up to 5 seconds.Waiting before sending new messages will reset the cooldown to its shortest duration.The \"Gameplay\" section has been added to Settings.The options for the system a",
    "tags": []
-  },
-  {
-   "titel": "Denuvo Anti Cheat Trial Update",
-   "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1843481262704672",
-   "datum": "2026-09-15T14:00:06.000Z",
-   "quelle": "Community Announcements",
-   "text": "At 11am ET, there will be an update that ends this current Anti Cheat Trial and removes Denuvo from Dead by Daylight. We thank everyone for participating and providing valuable feedback;  we will be reviewing all the data and feedback we have received ahead of any future trials. Please stay tuned to our Social Media channels for information on future activities. Our Player Support website has a comprehensive article for removing Denuvo residual files from your PC should you wish: https://support.deadbydaylight.com/hc/en-us/articles/52891224375828-Denuvo-Anti-Cheat-FAQ Thank you The Dead by Daylight Team",
-   "tags": []
-  },
-  {
-   "titel": "Dev Update | 10.2.0 Perks Update",
-   "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1843481262701761",
-   "datum": "2026-09-14T14:00:30.000Z",
-   "quelle": "Community Announcements",
-   "text": "Greetings, Fog Dwellers. Today we wanted to talk to you about some of the perk changes (spoiler alert: 58 perks are changing) and content that you can expect in the next PTB, as well as the reasonings behind them.Back in update 9.6.0, we added Diminishing Returns to the game. You may have noticed that this feature did not ship with exponential balance changes to accompany it; we wanted to ease players into the change, monitoring the impact on perk selection first, while we watch to see if any issues arise before making further changes. We feel that now is the time. Our ultimate goal is to update effects that bypass or are minimized by Diminishing Returns, and to buff gameplay effects that can safely be affected by Diminishing Returns to allow players to play around with builds and perks that aren’t picked often. Overall, we will have 26 perks affected by these changes. Today, we will start by highlighting two:Do No HarmWhile healing another Survivor for each Hook State they have:You heal 30/40/50% faster.Great basic Skill Check, grant 3% more progress.Increase the odds of triggering a Skill Check by 5%.Dev note: We wanted Do No Harm to better distinguish itself from We'll Make It a",
-   "tags": []
-  },
-  {
-   "titel": "10.1.2 | Bugfix Patch",
-   "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1842846814455826",
-   "datum": "2026-09-08T14:30:39.000Z",
-   "quelle": "Community Announcements",
-   "text": "ContentThe JudgmentIncreased the Divine Light curve window while Zealous to 0.8s (was 0.6s)Dev note: In hotfix 1 we increased the Zealous Curve window to 0.6s. However, that duration was shorter based on how long Divine Light was controlled - similar to how it was on the PTB. Because it can get pretty short, we felt it was safe to further increase it to 0.8s. We will continue monitoring this. Added a 0.3s Divine Light curve window when non-ZealousDev note: The curving has been a hugely appreciated mechanic to the Zealous state, giving opportunities to outplay Survivors from close range. To give The Judgment an edge when outside of the Zealous state, we're adding a shorter curve window to Divine Light. Zealous is still worth getting due to the longer curve window but being non-Zealous will provide more outplay potential. Survivors being Liberated from Exile respawn at least 32m away from The Judgment and get a 1s immunity to Divine LightDev note: After spending some time in Exile, returning to the Entity's Realm can be disorienting. Sometimes Survivors come back and The Judgment is right there, re-initiating a chase with them, to no fault of their (The Judgment's) own. To reduce the",
-   "tags": [
-    "patchnotes"
-   ]
   }
  ]
 }
