@@ -1,5 +1,5 @@
 {
- "aktualisiert": "2026-11-25T00:06:06.043Z",
+ "aktualisiert": "2026-11-25T08:36:49.459Z",
  "daten": {
   "killer": {
    "Agitation": {
@@ -1771,7 +1771,7 @@
       1
      ]
     },
-    "teachable": 30,
+    "teachable": 0,
     "image": "/Game/UI/UMGAssets/Icons/Perks/Yerkes/iconPerks_twoCanPlay"
    },
    "K34P02": {
@@ -1795,7 +1795,7 @@
       2
      ]
     },
-    "teachable": 35,
+    "teachable": 0,
     "image": "/Game/UI/UMGAssets/Icons/Perks/Yerkes/iconPerks_friendsTillTheEnd"
    },
    "K34P03": {
@@ -1819,7 +1819,7 @@
       16
      ]
     },
-    "teachable": 40,
+    "teachable": 0,
     "image": "/Game/UI/UMGAssets/Icons/Perks/Yerkes/iconPerks_batteriesIncluded"
    },
    "K35P01": {
@@ -1940,22 +1940,20 @@
    "K36P03": {
     "categories": null,
     "name": "Dark Arrogance",
-    "description": "You basic-vault Windows {Tunable.K36P03.VaultSpeedIncrease%}% faster.<br><br>Your missed basic-attack cooldown is {Tunable.K36P03.AttackCooldownReduction%}% shorter.<br><br>Whenever you are blinded or Pallet-stunned, the duration is {Tunable.K36P03.ExtraBlindStunDuration%}% longer.",
+    "description": "You basic-vault Windows {Tunable.K36P03.VaultSpeedIncrease%}% faster.<br><br>Your successful basic-attack cooldown is {Tunable.K36P03.AttackCooldownReduction%}% shorter.<br><br>Whenever you are blinded or Pallet-stunned the duration is {Tunable.K36P03.ExtraBlindStunDuration%}% longer.",
     "role": "killer",
     "character": 268435491,
     "tunables": {
      "extrablindstunduration%": [
-      25
+      15
      ],
      "vaultspeedincrease%": [
-      15,
-      20,
-      25
+      15
      ],
      "attackcooldownreduction%": [
-      15,
-      20,
-      25
+      13,
+      14,
+      15
      ]
     },
     "teachable": 40,
@@ -2235,9 +2233,9 @@
       4
      ],
      "exposedduration": [
-      80,
-      85,
-      90
+      60,
+      65,
+      70
      ],
      "carryhaste%pertoken": [
       4
@@ -2479,6 +2477,81 @@
     "teachable": 40,
     "image": "/Game/UI/UMGAssets/Icons/Perks/Udon/T_UI_iconsPerks_LayWaste"
    },
+   "K45P01": {
+    "categories": null,
+    "name": "Laughingstock",
+    "description": "Survivors within {Tunable.K45P01.DistancetoGen}m of a completed Generator:<li>Gain {Keyword.Exhausted}.</li><li>Gain {Keyword.Oblivious}.</li><br><br>When they leave this range, the effect ends after {Tunable.K45P01.Linger}s.<br><br>You see the Auras of completed Generators.",
+    "role": "killer",
+    "character": 268435500,
+    "tunables": {
+     "distancetogen": [
+      12
+     ],
+     "linger": [
+      3,
+      4,
+      5
+     ]
+    },
+    "teachable": 30,
+    "image": "/Game/UI/UMGAssets/Icons/Perks/Waffle/T_UI_iconsPerks_Laughingstock"
+   },
+   "K45P02": {
+    "categories": null,
+    "name": "Kill Spree",
+    "description": "When all remaining Survivors have {Tunable.K45P02.HookStates} Hook States and all Generators are completed, you can kill Survivors.<br><br>While killing a Survivor, both Exit Gate Switches are blocked. Whenever you finish killing a Survivor, this ends after {Tunable.K45P02.ExitBlockDuration}s.",
+    "role": "killer",
+    "character": 268435500,
+    "tunables": {
+     "hookstates": [
+      2
+     ],
+     "exitblockduration": [
+      12,
+      16,
+      20
+     ],
+     "exitstoblock": [
+      2
+     ]
+    },
+    "teachable": 35,
+    "image": "/Game/UI/UMGAssets/Icons/Perks/Waffle/T_UI_iconsPerks_KillSpree"
+   },
+   "K45P03": {
+    "categories": null,
+    "name": "Funny Business",
+    "description": "Whenever you damage a Generator, you gain {Tunable.K45P03.FirstHasteValue}% {Keyword.Haste} for {Tunable.K45P03.FirstHasteDuration}s and one of the following occurs at random:<ul><li>You retain your {Tunable.K45P03.RandomHasteValue}% {Keyword.Haste} for {Tunable.K45P03.RandomHasteDuration}s longer.</li><li>You get stunned for {Tunable.K45P03.RandomStunDuration}s.</li><li>The affected Generator is blocked for {Tunable.K45P03.RandomBlockDuration}s.</li><li>Confetti! But nothing happens.</li></ul><br><br>Cooldown: {Tunable.K45P03.Cooldown}s.<br><br>The same effect cannot happen twice in a row.",
+    "role": "killer",
+    "character": 268435500,
+    "tunables": {
+     "firsthastevalue": [
+      10
+     ],
+     "firsthasteduration": [
+      10
+     ],
+     "randomhastevalue": [
+      10
+     ],
+     "randomhasteduration": [
+      5
+     ],
+     "randomstunduration": [
+      2
+     ],
+     "randomblockduration": [
+      30
+     ],
+     "cooldown": [
+      60,
+      50,
+      40
+     ]
+    },
+    "teachable": 40,
+    "image": "/Game/UI/UMGAssets/Icons/Perks/Waffle/T_UI_iconsPerks_FunnyBusiness"
+   },
    "Lightborn": {
     "categories": [
      "enhancement"
@@ -2594,17 +2667,20 @@
      "hinderance"
     ],
     "name": "Scourge Hook: Monstrous Shrine",
-    "description": "When the Trial starts:<ul><li>4 random Hooks become Scourge Hooks.</li><li>The Basement Hooks become Scourge Hooks.</li></ul><br><br><br>While you are at least {Tunable.KG_Monstrous_Shrine.Range}m away from a Survivor on a Scourge Hook, any Generator that isn't being repaired regresses at {Tunable.KG_Monstrous_Shrine.GeneratorRegression}% speed.",
+    "description": "When the Trial starts:<ul><li>4 random Hooks become Scourge Hooks.</li><li>The Basement Hooks become Scourge Hooks.</li></ul><br><br><br>While you are at least {Tunable.KG_Monstrous_Shrine.Range}m away from a Survivor on a Scourge Hook, any Generator that isn't being repaired regresses at {Tunable.KG_Monstrous_Shrine.GeneratorRegression}% speed.<br><br><br>When the Survivor is no longer hooked this effect ends in {Tunable.KG_Monstrous_Shrine.LingerDuration}s.",
     "role": "killer",
     "character": null,
     "tunables": {
      "generatorregression": [
-      150,
-      175,
       200
      ],
      "range": [
       24
+     ],
+     "lingerduration": [
+      20,
+      25,
+      30
      ]
     },
     "teachable": 0,
@@ -3163,7 +3239,7 @@
       3
      ],
      "hasteamount%": [
-      5
+      7
      ]
     },
     "teachable": 0,
@@ -3612,9 +3688,9 @@
     "character": 3,
     "tunables": {
      "actionspeedreduction%": [
-      8,
-      9,
-      10
+      23,
+      24,
+      25
      ]
     },
     "teachable": 35,
@@ -3667,7 +3743,7 @@
      "perception"
     ],
     "name": "Dark Sense",
-    "description": "Whenever a Generator is completed, when the Killer gets within {Tunable.SG_Dark_Sense.KillerRange}m of you, for {Tunable.SG_Dark_Sense.EffectDuration}s:<ul><li>You see the Auras of Pallets and Windows within {Tunable.SG_Dark_Sense.AuraRange}m.</li><li>You see the Auras of other Survivors.</li><li>You see the Killer's Aura.</li></ul>",
+    "description": "When the trial starts, and after a Generator is completed, you earn {Tunable.SG_Dark_Sense.TokenGain} Token, up to {Tunable.SG_Dark_Sense.TokenMax}.<br><br><br>When the Killer gets within {Tunable.SG_Dark_Sense.KillerRange}m of you, spend {Tunable.SG_Dark_Sense.TokenCost} Token. Then, for the next {Tunable.SG_Dark_Sense.EffectDuration}s:<ul><li>You see the Auras of Pallets and Windows within {Tunable.SG_Dark_Sense.AuraRange}m.</li><li>You see the Auras of other Survivors.</li><li>You see the Killer's Aura.</li></ul>",
     "role": "survivor",
     "character": null,
     "tunables": {
@@ -3681,6 +3757,15 @@
      ],
      "aurarange": [
       32
+     ],
+     "tokengain": [
+      1
+     ],
+     "tokencost": [
+      1
+     ],
+     "tokenmax": [
+      5
      ]
     },
     "teachable": 0,
@@ -5857,7 +5942,7 @@
    "S46P01": {
     "categories": null,
     "name": "Do No Harm",
-    "description": "While healing another Survivor, for each Hook State they have:<ul><li>You heal {Tunable.S46P01.HealSpeedBonus%}% faster.</li><li>Great basic Skill Checks, grant {Tunable.S46P01.GreatSkillCheckBonus%}% more progress.</li><li>Basic Skill Checks are {Tunable.S46P01.SkillCheckOdds%}% more likely to appear.</li></ul>",
+    "description": "While healing another Survivor, for each Hook State they have:<ul><li>You heal {Tunable.S46P01.HealSpeedBonus%}% faster.</li><li>Great basic Skill Checks grant {Tunable.S46P01.GreatSkillCheckBonus%}% more progress.</li><li>Basic Skill Checks are {Tunable.S46P01.SkillCheckOdds%}% more likely to appear.</li></ul>",
     "role": "survivor",
     "character": 45,
     "tunables": {
@@ -6442,6 +6527,84 @@
     "teachable": 40,
     "image": "/Game/UI/UMGAssets/Icons/Perks/Udon/T_UI_iconsPerks_BoonSteadfast"
    },
+   "S55P01": {
+    "categories": null,
+    "name": "Valkyrie's Rage",
+    "description": "After being chased for {Tunable.S55P01.Duration}s, the next time you Pallet-stun the Killer, they are stunned for {Tunable.S55P01.StunModifier}% longer.",
+    "role": "survivor",
+    "character": 54,
+    "tunables": {
+     "duration": [
+      40,
+      35,
+      30
+     ],
+     "stunmodifier": [
+      75
+     ]
+    },
+    "teachable": 30,
+    "image": "/Game/UI/UMGAssets/Icons/Perks/Waffle/T_UI_iconsPerks_ValkyriesRage"
+   },
+   "S55P02": {
+    "categories": null,
+    "name": "Shared Trauma",
+    "description": "Whenever you take a protection hit, all Survivors within {Tunable.S55P02.Distance}m recover from {Keyword.Exhausted} while running for {Tunable.S55P02.MotivatedDuration}s.<br><br>Within {Tunable.S55P02.ExhaustedAuraDistance}m, you see the Auras of {Keyword.Exhausted} Survivors.",
+    "role": "survivor",
+    "character": 54,
+    "tunables": {
+     "distance": [
+      12
+     ],
+     "motivatedduration": [
+      30,
+      35,
+      40
+     ],
+     "exhaustedauradistance": [
+      32
+     ]
+    },
+    "teachable": 35,
+    "image": "/Game/UI/UMGAssets/Icons/Perks/Waffle/T_UI_iconsPerks_SharedTrauma"
+   },
+   "S55P03": {
+    "categories": null,
+    "name": "Best Gift Ever",
+    "description": "At the start of the trial, you earn {Tunable.S55P03.StartTokens} Tokens.<br><br>The first time you drop an Item of each type, spend <b>1</b> Token, then the dropped item is consumed. Then, based on the item's type:<ul><li>Flashlight: Whenever you stun the Killer, they are also blinded for {Tunable.S55P03.FlashlightModifierDuration}s.</li><li>Fog Vial: Whenever you fast-vault, for {Tunable.S55P03.FogVialModifierDuration}s, your Scratch Marks disappear {Tunable.S55P03.ScratchMarksModifier}% faster.</li><li>Key: You gain +{Tunable.S55P03.KeyModifierRummage} rummage on each chest.</li><li>Map: Auras you see for a duration last +{Tunable.S55P03.MapModifierDuration}s.</li><li>Medkit: While healing another Survivor, you also gain healing progress at {Tunable.S55P03.MedkitModifierRatio}% speed.</li><li>Toolbox: You see the Auras of the {Tunable.S55P03.ToolboxModifierAura} Generators closest to each other.</li></ul>",
+    "role": "survivor",
+    "character": 54,
+    "tunables": {
+     "starttokens": [
+      4,
+      5,
+      6
+     ],
+     "flashlightmodifierduration": [
+      2
+     ],
+     "fogvialmodifierduration": [
+      5
+     ],
+     "scratchmarksmodifier": [
+      50
+     ],
+     "keymodifierrummage": [
+      1
+     ],
+     "mapmodifierduration": [
+      1
+     ],
+     "medkitmodifierratio": [
+      25
+     ],
+     "toolboxmodifieraura": [
+      3
+     ]
+    },
+    "teachable": 40,
+    "image": "/Game/UI/UMGAssets/Icons/Perks/Waffle/T_UI_iconsPerks_BestGiftEver"
+   },
    "Saboteur": {
     "categories": [
      "strategy"
@@ -6530,12 +6693,12 @@
     "character": null,
     "tunables": {
      "unhookspeedmodifier": [
-      90,
-      95,
-      100
+      65,
+      70,
+      75
      ],
      "unhookhastebonus": [
-      5
+      7
      ]
     },
     "teachable": 0,

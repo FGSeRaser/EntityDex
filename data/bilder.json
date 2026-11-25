@@ -1,5 +1,5 @@
 {
- "aktualisiert": "2026-11-25T00:07:04.237Z",
+ "aktualisiert": "2026-11-25T08:37:50.113Z",
  "daten": {
   "perks": {
    "Ace in the Hole": "https://deadbydaylight.wiki.gg/images/thumb/IconPerks_aceInTheHole.png/128px-IconPerks_aceInTheHole.png?528a2e",
@@ -149,6 +149,9 @@
    "Fruits of Your Labor": "https://deadbydaylight.wiki.gg/images/thumb/T_UI_iconsPerks_FruitsOfYourLabor.png/128px-T_UI_iconsPerks_FruitsOfYourLabor.png?6e8560",
    "Salvation's Cry": "https://deadbydaylight.wiki.gg/images/thumb/T_UI_iconsPerks_SalvationsCry.png/128px-T_UI_iconsPerks_SalvationsCry.png?697de7",
    "Boon: Steadfast": "https://deadbydaylight.wiki.gg/images/thumb/T_UI_iconsPerks_BoonSteadfast.png/128px-T_UI_iconsPerks_BoonSteadfast.png?69ff59",
+   "Valkyrie's Rage": "https://deadbydaylight.wiki.gg/images/thumb/T_UI_iconsPerks_ValkyriesRage.png/128px-T_UI_iconsPerks_ValkyriesRage.png?22165a",
+   "Shared Trauma": "https://deadbydaylight.wiki.gg/images/thumb/T_UI_iconsPerks_SharedTrauma.png/128px-T_UI_iconsPerks_SharedTrauma.png?fe92e2",
+   "Best Gift Ever": "https://deadbydaylight.wiki.gg/images/thumb/T_UI_iconsPerks_BestGiftEver.png/128px-T_UI_iconsPerks_BestGiftEver.png?dcd771",
    "Saboteur": "https://deadbydaylight.wiki.gg/images/thumb/IconPerks_saboteur.png/128px-IconPerks_saboteur.png?9f0313",
    "Second Wind": "https://deadbydaylight.wiki.gg/images/thumb/IconPerks_secondWind.png/128px-IconPerks_secondWind.png?628298",
    "Self-Care": "https://deadbydaylight.wiki.gg/images/thumb/IconPerks_self-Care.png/128px-IconPerks_self-Care.png?f58526",
@@ -282,6 +285,9 @@
    "Celestial Witness": "https://deadbydaylight.wiki.gg/images/thumb/T_UI_iconsPerks_CelestialWitness.png/128px-T_UI_iconsPerks_CelestialWitness.png?d93f72",
    "Hex: Under Your Thumb": "https://deadbydaylight.wiki.gg/images/thumb/T_UI_iconsPerks_HexUnderYourThumb.png/128px-T_UI_iconsPerks_HexUnderYourThumb.png?57c1f4",
    "Lay Waste": "https://deadbydaylight.wiki.gg/images/thumb/T_UI_iconsPerks_LayWaste.png/128px-T_UI_iconsPerks_LayWaste.png?a49aeb",
+   "Laughingstock": "https://deadbydaylight.wiki.gg/images/thumb/T_UI_iconsPerks_Laughingstock.png/128px-T_UI_iconsPerks_Laughingstock.png?7d6fcf",
+   "Kill Spree": "https://deadbydaylight.wiki.gg/images/thumb/T_UI_iconsPerks_KillSpree.png/128px-T_UI_iconsPerks_KillSpree.png?e91831",
+   "Funny Business": "https://deadbydaylight.wiki.gg/images/thumb/T_UI_iconsPerks_FunnyBusiness.png/128px-T_UI_iconsPerks_FunnyBusiness.png?1cae32",
    "Lightborn": "https://deadbydaylight.wiki.gg/images/thumb/IconPerks_lightborn.png/128px-IconPerks_lightborn.png?4210b0",
    "Mad Grit": "https://deadbydaylight.wiki.gg/images/thumb/IconPerks_madGrit.png/128px-IconPerks_madGrit.png?2f2225",
    "Mindbreaker": "https://deadbydaylight.wiki.gg/images/thumb/IconPerks_mindbreaker.png/128px-IconPerks_mindbreaker.png?ff1e9e",
@@ -378,6 +384,7 @@
    "Kwon Tae-young": "https://deadbydaylight.wiki.gg/images/thumb/S52_KwonTae-young_Portrait.png/256px-S52_KwonTae-young_Portrait.png?d6bd6f",
    "Shane Wiigwaas": "https://deadbydaylight.wiki.gg/images/thumb/S53_ShaneWiigwaas_Portrait.png/256px-S53_ShaneWiigwaas_Portrait.png?373921",
    "Aurora Stardotter": "https://deadbydaylight.wiki.gg/images/thumb/S54_AuroraStardotter_Portrait.png/256px-S54_AuroraStardotter_Portrait.png?570493",
+   "Sienna Shaw": "https://deadbydaylight.wiki.gg/images/thumb/S55_SiennaShaw_Portrait.png/256px-S55_SiennaShaw_Portrait.png?a8a189",
    "The Trapper": "https://deadbydaylight.wiki.gg/images/K01_TheTrapper_Portrait.png?564c1d",
    "The Wraith": "https://deadbydaylight.wiki.gg/images/K02_TheWraith_Portrait.png?fbb21b",
    "The Hillbilly": "https://deadbydaylight.wiki.gg/images/K03_TheHillbilly_Portrait.png?b1fa3b",
@@ -421,7 +428,8 @@
    "The Krasue": "https://deadbydaylight.wiki.gg/images/thumb/K41_TheKrasue_Portrait.png/256px-K41_TheKrasue_Portrait.png?3513ba",
    "The First": "https://deadbydaylight.wiki.gg/images/thumb/K42_TheFirst_Portrait.png/256px-K42_TheFirst_Portrait.png?e12bf6",
    "The Slasher": "https://deadbydaylight.wiki.gg/images/thumb/K43_TheSlasher_Portrait.png/256px-K43_TheSlasher_Portrait.png?2fe4c9",
-   "The Judgment": "https://deadbydaylight.wiki.gg/images/thumb/K44_TheJudgment_Portrait.png/256px-K44_TheJudgment_Portrait.png?a744a3"
+   "The Judgment": "https://deadbydaylight.wiki.gg/images/thumb/K44_TheJudgment_Portrait.png/256px-K44_TheJudgment_Portrait.png?a744a3",
+   "The Terrifier": "https://deadbydaylight.wiki.gg/images/thumb/K45_TheTerrifier_Portrait.png/256px-K45_TheTerrifier_Portrait.png?4c56ab"
   },
   "maps": {
    "Coal Tower": {
@@ -803,6 +811,9 @@
    "fruitsofyourlabor": "https://deadbydaylight.wiki.gg/images/thumb/T_UI_iconsPerks_FruitsOfYourLabor.png/128px-T_UI_iconsPerks_FruitsOfYourLabor.png?6e8560",
    "salvationscry": "https://deadbydaylight.wiki.gg/images/thumb/T_UI_iconsPerks_SalvationsCry.png/128px-T_UI_iconsPerks_SalvationsCry.png?697de7",
    "boonsteadfast": "https://deadbydaylight.wiki.gg/images/thumb/T_UI_iconsPerks_BoonSteadfast.png/128px-T_UI_iconsPerks_BoonSteadfast.png?69ff59",
+   "valkyriesrage": "https://deadbydaylight.wiki.gg/images/thumb/T_UI_iconsPerks_ValkyriesRage.png/128px-T_UI_iconsPerks_ValkyriesRage.png?22165a",
+   "sharedtrauma": "https://deadbydaylight.wiki.gg/images/thumb/T_UI_iconsPerks_SharedTrauma.png/128px-T_UI_iconsPerks_SharedTrauma.png?fe92e2",
+   "bestgiftever": "https://deadbydaylight.wiki.gg/images/thumb/T_UI_iconsPerks_BestGiftEver.png/128px-T_UI_iconsPerks_BestGiftEver.png?dcd771",
    "saboteur": "https://deadbydaylight.wiki.gg/images/thumb/IconPerks_saboteur.png/128px-IconPerks_saboteur.png?9f0313",
    "secondwind": "https://deadbydaylight.wiki.gg/images/thumb/IconPerks_secondWind.png/128px-IconPerks_secondWind.png?628298",
    "selfcare": "https://deadbydaylight.wiki.gg/images/thumb/IconPerks_self-Care.png/128px-IconPerks_self-Care.png?f58526",
@@ -936,6 +947,9 @@
    "celestialwitness": "https://deadbydaylight.wiki.gg/images/thumb/T_UI_iconsPerks_CelestialWitness.png/128px-T_UI_iconsPerks_CelestialWitness.png?d93f72",
    "hexunderyourthumb": "https://deadbydaylight.wiki.gg/images/thumb/T_UI_iconsPerks_HexUnderYourThumb.png/128px-T_UI_iconsPerks_HexUnderYourThumb.png?57c1f4",
    "laywaste": "https://deadbydaylight.wiki.gg/images/thumb/T_UI_iconsPerks_LayWaste.png/128px-T_UI_iconsPerks_LayWaste.png?a49aeb",
+   "laughingstock": "https://deadbydaylight.wiki.gg/images/thumb/T_UI_iconsPerks_Laughingstock.png/128px-T_UI_iconsPerks_Laughingstock.png?7d6fcf",
+   "killspree": "https://deadbydaylight.wiki.gg/images/thumb/T_UI_iconsPerks_KillSpree.png/128px-T_UI_iconsPerks_KillSpree.png?e91831",
+   "funnybusiness": "https://deadbydaylight.wiki.gg/images/thumb/T_UI_iconsPerks_FunnyBusiness.png/128px-T_UI_iconsPerks_FunnyBusiness.png?1cae32",
    "lightborn": "https://deadbydaylight.wiki.gg/images/thumb/IconPerks_lightborn.png/128px-IconPerks_lightborn.png?4210b0",
    "madgrit": "https://deadbydaylight.wiki.gg/images/thumb/IconPerks_madGrit.png/128px-IconPerks_madGrit.png?2f2225",
    "mindbreaker": "https://deadbydaylight.wiki.gg/images/thumb/IconPerks_mindbreaker.png/128px-IconPerks_mindbreaker.png?ff1e9e",
@@ -1032,6 +1046,7 @@
    "kwontaeyoung": "https://deadbydaylight.wiki.gg/images/thumb/S52_KwonTae-young_Portrait.png/256px-S52_KwonTae-young_Portrait.png?d6bd6f",
    "shanewiigwaas": "https://deadbydaylight.wiki.gg/images/thumb/S53_ShaneWiigwaas_Portrait.png/256px-S53_ShaneWiigwaas_Portrait.png?373921",
    "aurorastardotter": "https://deadbydaylight.wiki.gg/images/thumb/S54_AuroraStardotter_Portrait.png/256px-S54_AuroraStardotter_Portrait.png?570493",
+   "siennashaw": "https://deadbydaylight.wiki.gg/images/thumb/S55_SiennaShaw_Portrait.png/256px-S55_SiennaShaw_Portrait.png?a8a189",
    "thetrapper": "https://deadbydaylight.wiki.gg/images/K01_TheTrapper_Portrait.png?564c1d",
    "thewraith": "https://deadbydaylight.wiki.gg/images/K02_TheWraith_Portrait.png?fbb21b",
    "thehillbilly": "https://deadbydaylight.wiki.gg/images/K03_TheHillbilly_Portrait.png?b1fa3b",
@@ -1075,7 +1090,8 @@
    "thekrasue": "https://deadbydaylight.wiki.gg/images/thumb/K41_TheKrasue_Portrait.png/256px-K41_TheKrasue_Portrait.png?3513ba",
    "thefirst": "https://deadbydaylight.wiki.gg/images/thumb/K42_TheFirst_Portrait.png/256px-K42_TheFirst_Portrait.png?e12bf6",
    "theslasher": "https://deadbydaylight.wiki.gg/images/thumb/K43_TheSlasher_Portrait.png/256px-K43_TheSlasher_Portrait.png?2fe4c9",
-   "thejudgment": "https://deadbydaylight.wiki.gg/images/thumb/K44_TheJudgment_Portrait.png/256px-K44_TheJudgment_Portrait.png?a744a3"
+   "thejudgment": "https://deadbydaylight.wiki.gg/images/thumb/K44_TheJudgment_Portrait.png/256px-K44_TheJudgment_Portrait.png?a744a3",
+   "theterrifier": "https://deadbydaylight.wiki.gg/images/thumb/K45_TheTerrifier_Portrait.png/256px-K45_TheTerrifier_Portrait.png?4c56ab"
   }
  }
 }

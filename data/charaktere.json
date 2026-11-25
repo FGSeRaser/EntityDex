@@ -1,5 +1,5 @@
 {
- "aktualisiert": "2026-11-25T00:06:07.422Z",
+ "aktualisiert": "2026-11-25T08:36:50.315Z",
  "daten": {
   "0": {
    "id": "Dwight",
@@ -1351,6 +1351,31 @@
     "S54P03"
    ]
   },
+  "54": {
+   "id": "S55",
+   "name": "Sienna Shaw",
+   "role": "survivor",
+   "difficulty": "intermediate",
+   "gender": "female",
+   "height": "average",
+   "bio": "Sienna Shaw is a resilient survivor, forged into a fighter by brutal acts of sadistic evil.<br><br>Her personal perks, <b>Valkryie's Rage</b>, <b>Shared Trauma</b>, and <b>Best Gift Ever</b>, give her an edge in encounters, turn pain into protection, and provide additional benefits for every unique item.",
+   "story": "Sienna Shaw could not remember a day without a dark thought. Not since her father died. One of his drawings was her lone source of comfort. A Valkyrie warrior illustrated in her likeness. She recreated the Valkyrie’s battle armor for a Halloween party, including the sword her father had left her.<br><br>The night she finished the costume, Sienna dreamed of a garish set. Like an old kid’s show. The host sang a cheerful tune. <i>Drop on by the Clown Cafe!</i> Children frolicked. Art The Clown, the serial killer that once terrorized Miles County, emerged.<br><br>He reached into his bag of tricks.<br><br>Next came gunfire. Screams. Gurgling. Dead little hands. Sienna dragged herself across glass. Art aimed his flamethrower. She smelled fuel. Charred skin. The clown grinned. In his eyes was the sickest pleasure.<br><br>Sienna woke. Her angel wings were ablaze. Yet the sword was unscathed. Shaken but undeterred, she sought replacement wings at the costume shop. As she approached the counter, someone sidled up beside her.<br><br>It was exactly like her nightmare. The same jumpsuit. The same twisted grin. But Art was dead. It was just a dumbass in a costume. Exactly like the one Jonathan was hellbent on wearing.<br><br><i>Jonathan</i>. Her brother's obsession with that maniac was disturbing, but she chalked it up to the grieving process and brushed off his warnings of Art's return.<br><br>The plan was to meet Allie and Brooke at the venue. Doing her best to ignore the rising dread, Sienna hit the dance floor. It felt good to let loose. Almost too good. She did not feel herself. Something was off. She opened her eyes to a horrid sight.<br><br>A pale little girl, face contorted with sadistic glee.<br><br>She left in a panic. On the drive home, Jonathan called. He was stranded at an abandoned carnival. It was there that Art and his demonic accomplice sprung their trap. A brutal battle ensued, ending when Sienna swung her blade clean through the smirking bastard’s neck.<br><br>Though she emerged victorious, it was Art that struck the deepest wound. Her friends were dead. Her mother was dead. Cruelly. Gruesomely. Maimed with vicious glee.<br><br>Sienna spent the next five years in a psychiatric facility. Emerging for the holidays, she reunited with her aunt Jessica, uncle Greg, and cousin Gabbie. The facade of normalcy was short lived. Art had returned with a bang.<br><br>She awoke one night to raised voices. Her aunt and uncle arguing. Their darkened words were so unlike them. Realization dawned as she crept down the stairs.<br><br><i>Thud</i>. From the living room. It was Art. Lovingly placing the finishing touches on his decoration. Uncle Greg, decapitated, eviscerated, and crucified.<br><br>Sienna raced to find Gabbie. Art was faster. His mallet struck her skull with a sickening crunch.<br><br>A sudden vision overtook her. She was back at <i>The Clown Cafe</i>. There were no children this time. No host singing madly on. Only a man with shattered glasses. Impaled by something hideous, inexplicable. Before him stood a hook, encircled by spiderlike tendrils of black fog.<br><br>She screamed as the fog crept toward her. In the distance, a playful horn set crows to flight.",
+   "image": "UI/Icons/CharPortraits/Waffle/T_UI_S55_SiennaShaw_Portrait.png",
+   "abilities": null,
+   "tunables": null,
+   "item": null,
+   "outfit": [
+    "S55_Head01",
+    "S55_Torso01",
+    "S55_Legs01"
+   ],
+   "dlc": "Waffle",
+   "perks": [
+    "S55P01",
+    "S55P02",
+    "S55P03"
+   ]
+  },
   "268435456": {
    "id": "Chuckles",
    "name": "The Trapper",
@@ -2413,7 +2438,7 @@
     "TerrorRadius": 3200,
     "MaxWalkSpeed": 460,
     "CarryingCamperMaxWalkSpeedPercent": 0.800000011920929,
-    "ActivateTormentMode_SecondsToCharge": 1,
+    "ActivateTormentMode_SecondsToCharge": 0.800000011920929,
     "ExecutionerPowerAttackOpenTime": 0.30000001192092896,
     "ExecutionerPowerAttackHittingTime": 0.6000000238418579,
     "ExecutionerPowerAttackSucceedCooldownTime": 2.25,
@@ -2427,21 +2452,21 @@
     "TormentMode_MouseYawScale": 10,
     "TormentMode_GamePadYawScale": 200,
     "TormentMode_NotMovingYawScaleMultiplier": 1.5,
-    "TormentMode_MaxCharge": 10,
+    "TormentMode_MaxCharge": 8,
     "TormentMode_WalkSpeed": 420,
     "TormentMode_ChargeWalkSpeed": 368,
-    "TormentMode_ChargeRate": 0.25,
+    "TormentMode_ChargeRate": 0.5,
     "TormentMode_MinimumPercentToActivate": 0.009999999776482582,
     "RestrictionTrailPoint_AliveTime": 3,
-    "AttackTrail_SpawnDelay": 0.2669999897480011,
-    "AttackTrail_TimeIntervalBetweenPoint": 0.032999999821186066,
-    "AttackTrail_Lenght": 1000,
+    "AttackTrail_SpawnDelay": 0.25,
+    "AttackTrail_TimeIntervalBetweenPoint": 0.014999999664723873,
+    "AttackTrail_Lenght": 1600,
     "AttackTrail_ConsideredAsASlopeAngle": 42,
-    "AttackTrailPoint_AliveTime": 0.18000000715255737,
+    "AttackTrailPoint_AliveTime": 0.30000001192092896,
     "AttackTrail_DamageCooldownTime": 1,
     "AttackPointDelayToEnableCollision": 0.032999999821186066,
     "TormentTrail_EffectLastingTime": 3,
-    "TormentMode_Cooldown": 1,
+    "TormentMode_Cooldown": 1.2000000476837158,
     "RestrictionRangeToHooks": 400,
     "RestrictionRangeToGenerators": 400,
     "RestrictionRangeToExitSwitch": 300,
@@ -3661,7 +3686,7 @@
     "FootstepMaximumVisibilityDistance": 1600,
     "FootStepFrequency": 0.15000000596046448,
     "TipToeModeDuration": 14,
-    "TipToeModeCooldown": 12,
+    "TipToeModeCooldown": 10,
     "TipToeModeMaxWalkSpeed": 440,
     "TransitionToNormalModeDuration": 1,
     "TransitionToTipToeModeDuration": 1,
@@ -3683,7 +3708,7 @@
     "CameraWorkTTMModeSpringArmLength": 95,
     "CameraWorkTTMModeSpringArmHeight": 95,
     "ScamperChargeupDuration": 1,
-    "ScamperDuration": 1.7999999523162842,
+    "ScamperDuration": 2,
     "ScamperAccelerationMultiplier": 10,
     "SliceAndDiceAccelerationMultiplier": 100,
     "SliceAndDiceOpenDuration": 0.6000000238418579,
@@ -3694,8 +3719,8 @@
     "SliceAndDiceTurnRateMultiplier": 1,
     "SliceAndDiceAttackZoneScaleFactor": 1.5,
     "ScamperChainingInputBuffer": 0.5,
-    "CrawlDuration": 1,
-    "QuickVaultDuration": 1,
+    "CrawlDuration": 0.800000011920929,
+    "QuickVaultDuration": 0.800000011920929,
     "InjureAfterQuickVaultBuffer": 3
    },
    "item": "Item_Slasher_K34Power",
@@ -4507,6 +4532,35 @@
     "K44P01",
     "K44P02",
     "K44P03"
+   ]
+  },
+  "268435500": {
+   "id": "K45",
+   "name": "The Terrifier",
+   "role": "killer",
+   "difficulty": "intermediate",
+   "gender": "male",
+   "height": "average",
+   "bio": "The Terrifier is a sadist who has many creative ways to torture his victims.<br><br>His personal perks, <b>Laughingstock</b>, <b>Kill Spree</b>, and <b>Funny Business</b> weaken Survivors as Generators are repaired, add the ability to kill Survivors in the late-game, and introduce an element of surprise when damaging Generators.",
+   "story": "It started with grease paint and makeshift weaponry. Though he looked ready for the circus, Art the Clown’s intentions were betrayed by his piercing eyes and toothy smile. This was a killer, sadistic and silent.<br><br>The coming hours would be a masterclass in human suffering. A hacksaw cut through the flesh and bone of a woman hung upside-down, conscious, screaming as she split in two. Another was skinned alive, her bare chest peeled away, worn by Art as he went on the hunt. And then, Victoria—her face torn and eaten as she lay on cold concrete, the police arriving too late to save her from horrible disfigurement.<br><br>As the officers trained their guns on Art, he had one last joke to play. He turned to them, gun in mouth, and pulled the trigger.<br><br>It should have been over. A serial killer's fifteen minutes of fame come to an end.<br><br>But something brought him back. Something inhuman. A demon.<br><br>Art's murder spree continued. He soon came upon Sienna Shaw but rather than kill her, he worked at breaking her down. He murdered everyone around her and abducted her younger brother, Jonathan, taking him to the closed fairgrounds. What should have been another two corpses became a battle, with Sienna finally decapitating Art and saving her brother.<br><br>Art wouldn't die so easily. His demonic companion possessed Victoria and gave birth to Art's reanimated head. As he was reunited with his body, he returned to his hideout and fell into a deep rest for five years.<br><br>He awoke with the same sadistic urges, within minutes ripping the flesh from a man's head until one ferocious tug tore it completely from its skull. While revenge on Sienna was his goal, Art made sure to enjoy himself along the way. Wielding a chainsaw, he broke up an intimate shower between two students, keeping them alive as he carved up their naked bodies. When he finally came for Sienna, he surprised her with the corpse of her uncle, crucified on the kitchen wall. Tear-streaked and panicked, she ran to check on her cousin but Art intercepted her with a mallet. As he smashed it into her head, a black fog rose at his feet.<br><br>He saw blood dripping from bodies impaled on meat hooks. Heard the tortured screams of those writhing in agony. And then he saw them—the victims that would never die, that would feel pain again and again. Tortured. Forever.<br><br>He laughed, silently, unable to compose himself. Each time he straightened up, he saw more of them, stabbed, bludgeoned, burned. His fits of laughter started over again.<br><br>It was a grand comedy. And he would be the star.",
+   "image": "UI/Icons/CharPortraits/Waffle/T_UI_K45_TheTerrifier_Portrait.png",
+   "abilities": null,
+   "tunables": {
+    "MaxWalkSpeed": 460,
+    "CarryingCamperMaxWalkSpeedPercent": 0.800000011920929,
+    "TerrorRadius": 3200
+   },
+   "item": "Item_K45Power",
+   "outfit": [
+    "K45_Head01",
+    "K45_Body01",
+    "K45_Weapon01"
+   ],
+   "dlc": "Waffle",
+   "perks": [
+    "K45P01",
+    "K45P02",
+    "K45P03"
    ]
   }
  }
