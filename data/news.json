@@ -1,5 +1,5 @@
 {
- "aktualisiert": "2026-11-26T08:20:24.408Z",
+ "aktualisiert": "2026-11-26T21:33:52.293Z",
  "daten": [
   {
    "titel": "The Terrifier Chapter is now available on Steam!",
@@ -194,14 +194,6 @@
    "tags": [
     "patchnotes"
    ]
-  },
-  {
-   "titel": "10.2.0 | PTB Patch Notes",
-   "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1843481262704854",
-   "datum": "2026-09-15T15:07:04.000Z",
-   "quelle": "Community Announcements",
-   "text": "FeaturesSurvivor Intent SystemSurvivors can send and receive text messages during a matchBy pressing and holding the scroll-button when using a Mouse, or the right d-pad input on controllers, players can open the messages wheel8 messages are available for players to select and sendHovering the message, and releasing scroll-button/right, will send the messageInputs are customizableSent messages are shown to all Survivors, next to their information on the left side of the screenMessages are predefined.Players can customize on Settings their messages selectionOn Match Details, Players can mute and unmute any other player during a matchMuting is not communicated to the muted playerOn Settings, players can deactivate the system, if they want to opt outOn Match Details, Players that have deactivated the system are marked with a \"no\" icon to surface that they have opt outFor reducing spamming, a 1s cooldown is applied when players send messages too quickly.If a player keeps spamming, their cooldown will increase up to 5 seconds.Waiting before sending new messages will reset the cooldown to its shortest duration.The \"Gameplay\" section has been added to Settings.The options for the system a",
-   "tags": []
   }
  ]
 }
